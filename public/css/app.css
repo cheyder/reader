@@ -42,6 +42,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+
 }
 
 html {
@@ -65,6 +66,7 @@ section {
 }
 
 body {
+  height: 100vh;
   margin: 0;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
@@ -120,7 +122,7 @@ address {
 ol,
 ul,
 dl {
-  margin-top: 0;
+  /*margin-top: 0;*/
   margin-bottom: 1rem;
 }
 
