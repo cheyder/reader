@@ -16,23 +16,19 @@ class DeskController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    public function collection () {
+        $source = 'desk';
+        return view('desk/collection', [
+            'source' => $source
+        ]);
+    }
+
     public function index()
     {
-        return view('desk');
+        $source = 'deskIndex';
+        return view('desk/index', [
+            'source' => $source
+        ]);
     }
 
-    public function nav ()
-    {
-        return view('desknav');
-    }
-
-    public function settings ()
-    {
-        return view('deskset');
-    }
 }

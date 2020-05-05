@@ -9,7 +9,7 @@
                     <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                     @auth
                     <a class="btn btn-primary btn-lg" href="{{ route('desk') }}" role="button">Reader</a>
-                    <a class="btn btn-outline-primary btn-lg" href="{{ route('deskset') }}" role="button">Settings</a>
+                    <a class="btn btn-outline-primary btn-lg" href="{{ route('settings') }}" role="button">Settings</a>
                     @else
                     <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Open yours</a>
                     <a class="btn btn-primary btn-lg" href="{{ route('register') }}" role="button">Create a new</a>

@@ -58,6 +58,7 @@
 </div>
 @endsection
 
+
 @section('footer')
 @include('includes/footer')
 @endsection
