@@ -4,7 +4,7 @@
 <div class="container">
 <div class="row justify-content-center">
 <div class="col-11">
-    <div id="carousel" class="carousel slide" data-ride="carousel">
+    <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="card">
@@ -15,14 +15,13 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Select</a>
-                            <a class="dropdown-item" href="#">Move</a>
+                            <a class="dropdown-item" href="#">Insert</a>
                             <a class="dropdown-item" href="#">Delete</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">folder title</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action active">
                             Cras justo odio
@@ -47,7 +46,6 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Select</a>
-                        <a class="dropdown-item" href="#">Move</a>
                         <a class="dropdown-item" href="#">Delete</a>
                     </div>
                 </div>
@@ -63,25 +61,40 @@
         </div>
         <div class="carousel-item">
             <div class="card">
-            <div class="card-header">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<img class="img-fluid" src="icons/echo-dot.png" alt>-->
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Select</a>
-                        <a class="dropdown-item" href="#">Move</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                    </div>
-                </div>
-            </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <!--<h5 class="card-title">Special title treatment</h5>-->
+                <p class="card-text">Get a new text or create a new folder for your collection.</p>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Position</label>
+                  </div>
+                  <select class="custom-select" id="inputGroupSelect01">
+                      <option selected>Choose...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                  </select>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Type</label>
+                  </div>
+                  <select class="custom-select" id="inputGroupSelect01">
+                      <option selected>Choose...</option>
+                      <option value="1">new Text</option>
+                      <option value="2">new Folder</option>
+                  </select>
+                </div>
+
+                <div class = "input-group">
+                  <input type = "text" class = "form-control">
+                </div>
             </div>
             </div>
             <div class="card-footer justify-content-center">
-                    <a href="#" class="btn btn-primary">Open</a>
+                    <a href="#" class="btn btn-primary">Create</a>
             </div>
         </div>
     </div>
