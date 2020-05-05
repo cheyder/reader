@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('nav')
+@include('includes/nav')
+@endsection
+
 @section('content')
 <div class="container">
 <div class="row justify-content-center">
@@ -55,7 +59,7 @@
                 <p class="card-text">First 100 words: Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quia sunt consectetur, voluptates atque totam a eum magni non beatae officia eius explicabo recusandae. Saepe fuga modi consequatur repellendus culpa!</p>
             </div>
             <div class="card-footer justify-content-center">
-                    <a href="#" class="btn btn-primary">Read</a>
+                    <a href="{{ route('reader') }}" class="btn btn-primary">Read</a>
             </div>
             </div>
         </div>
@@ -109,7 +113,8 @@
 </div> 
 </div>
 </div>
+@endsection
 
-
-
+@section('footer')
+@include('includes/footer')
 @endsection

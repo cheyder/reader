@@ -39,6 +39,7 @@
 
         
         <button class="btn btn-primary" type="submit">Submit</button>
+        <a class="btn btn-secondary" href=" {{ route('welcome') }}">Cancel</a>
         <button
             class="btn btn-outline-primary" 
             href="{{ route('logout') }}"
