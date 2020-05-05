@@ -30,4 +30,9 @@ class DeskController extends Controller
     {
         return view('desknav');
     }
+
+    public function settings ()
+    {
+        return view('deskset');
+    }
 }

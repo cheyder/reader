@@ -21,4 +21,6 @@ Auth::routes();
 
 Route::get('/desk', 'DeskController@index')->name('desk');
 Route::get('/desk/nav', 'DeskController@nav')->name('desknav');
+Route::get('/desk/settings', 'DeskController@settings')->name('deskset');
+
 

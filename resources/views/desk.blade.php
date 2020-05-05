@@ -65,7 +65,7 @@
                 <!--<h5 class="card-title">Special title treatment</h5>-->
                 <p class="card-text">Get a new text or create a new folder for your collection.</p>
 
-                <div class="input-group">
+                <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Position</label>
                   </div>
@@ -77,7 +77,7 @@
                   </select>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Type</label>
                   </div>
@@ -88,7 +88,7 @@
                   </select>
                 </div>
 
-                <div class = "input-group">
+                <div class = "input-group mb-3">
                   <input type = "text" class = "form-control">
                 </div>
             </div>
