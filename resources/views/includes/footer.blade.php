@@ -1,4 +1,4 @@
-<footer class="bg-white fixed-bottom">
+<footer class="bg-white fixed-bottom shadow">
         <div class="row justify-content-center">
             <div class="">
             @if($source === 'desk')
