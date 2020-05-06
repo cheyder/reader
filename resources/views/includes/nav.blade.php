@@ -1,5 +1,5 @@
 @if(Request::is('*read*'))
-    <a class="fixed-top w-auto" style="height:48px" href="{{ route('desk') }}"></a>
+    <a class="fixed-top w-auto" style="height:48px" href="{{ route('desk.index') }}"></a>
 @else
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
 
