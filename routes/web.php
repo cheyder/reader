@@ -13,10 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');
+
+
+Route::get('/desk', 'DeskController@collection')->name('desk');
+Route::get('/desk/index', 'DeskController@index')->name('desk.index');
+
+Route::get('/read', 'ReaderController@read')->name('read');
+Route::get('/read/index', 'ReaderController@index')->name('read.index');
+
+
