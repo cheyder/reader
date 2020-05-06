@@ -6,10 +6,8 @@
 
 @section('content')
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-11">
-    <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-    <div class="carousel-inner">
+    <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner col-10">
         <div class="carousel-item active">
             <div class="card">
                 <div class="card-header">
@@ -110,8 +108,6 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div> 
-</div>
 </div>
 @endsection
 
