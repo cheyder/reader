@@ -7,34 +7,33 @@
     <form action="">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">E-Mail</span>
+                <span class="input-group-text">E-Mail</span>
             </div>
 
-            <input type="text" class="form-control" value="ingo@flottertyp.de" aria-label="Email" aria-describedby="basic-addon1" readonly>
+            <input id="email-input" type="text" class="form-control" value="{{ Auth::user()->email }}" aria-label="Email" readonly>
             
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="edit-email">Edit</button>
+                <button class="btn btn-outline-secondary" onclick="toggleEmailEdit()" type="button" id="edit-email">Edit</button>
             </div>
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="password">Password</span>
+                <span class="input-group-text">Password</span>
             </div>
 
-            <input type="password" class="form-control" placeholder="Insert a new password:" aria-label="Password" aria-describedby="password">
+            <input id="inputPassword" type="password" class="form-control" aria-label="Password" readonly>
 
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="edit-email">Edit</button>
+                <button class="btn btn-outline-secondary" type="button" id="edit-password" onclick="togglePasswordEdit()">Edit</button>
             </div>
         </div>
 
-        <div class="input-group mb-3">
+        <div id="confirmPasswordGroup" class="input-group mb-3 d-none">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="password">Confirm</span>
+                <span class="input-group-text">Confirm</span>
             </div>
-
-            <input type="password" class="form-control" placeholder="Type your new password again:" aria-label="Password" aria-describedby="password">
+            <input type="password" class="form-control" placeholder="enter it again" aria-label="Confirm Password">
         </div>
 
         
@@ -48,15 +47,40 @@
         {{ __('Logout') }}
         </button>
         <button class="btn btn-outline-danger" type="submit">Delete</button>
+    </form>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
-    </form>
 </div>
 </div>
 
 <div class="row justify-content-around">
 </div>
 </div>
+
+<script>
+    function toggleEmailEdit() {
+        let elem = document.getElementById('email-input');
+        if(elem.hasAttribute('readonly')) {
+            elem.removeAttribute('readonly')
+        } else {
+            elem.setAttribute('readonly', '')
+        }
+    }
+
+    function togglePasswordEdit() {
+        let pass = document.getElementById('inputPassword');
+        let conf = document.getElementById('confirmPasswordGroup');
+        if(pass.hasAttribute('readonly')) {
+            pass.removeAttribute('readonly');
+            pass.setAttribute('placeholder', 'insert new password');
+            conf.setAttribute('class', 'input-group mb-3 ')
+        } else {
+            pass.setAttribute('readonly', '');
+            pass.removeAttribute('placeholder');
+            conf.setAttribute('class', 'd-none');
+        }
+    }
+</script>
 @endsection
