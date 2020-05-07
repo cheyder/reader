@@ -6,17 +6,21 @@
 
 @section('content')
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-11">
-    <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-    <div class="carousel-inner">
+    <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner col-10">
         <div class="carousel-item active">
             <div class="card">
-                <div class="card-header">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <!--<img class="img-fluid" src="icons/echo-dot.png" alt>-->
-                        </button>
+                <div class="card-header py-0">
+                    <div class="dropleft">
+                        <img 
+                            class="dropdown-toggle float-right" 
+                            style="height: 36px"
+                            src="{{ asset('icons/echo-dot.png') }}" 
+                            alt="" 
+                            id="dropdownMenuButton" 
+                            data-toggle="dropdown" 
+                            aria-haspopup="true" 
+                            aria-expanded="false">
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Select</a>
                             <a class="dropdown-item" href="#">Insert</a>
@@ -43,11 +47,17 @@
         </div>
         <div class="carousel-item">
             <div class="card">
-            <div class="card-header">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<img class="img-fluid" src="icons/echo-dot.png" alt>-->
-                    </button>
+            <div class="card-header py-0">
+                <div class="dropleft">
+                    <img 
+                        class="dropdown-toggle float-right" 
+                        style="height: 36px"
+                        src="{{ asset('icons/echo-dot.png') }}" 
+                        alt="" 
+                        id="dropdownMenuButton" 
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Select</a>
                         <a class="dropdown-item" href="#">Delete</a>
@@ -110,8 +120,6 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div> 
-</div>
 </div>
 @endsection
 

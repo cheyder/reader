@@ -1,61 +1,37 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+@if(Request::is('*read*'))
+    <a class="fixed-top w-auto" style="height:48px" href="{{ route('desk') }}"></a>
+@else
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
+
         <div class="container">
+            
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'Reader') }}
             </a>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a class="badge badge-pill badge-primary" href="#">.</a>
+                    <a class="btn p-1" href="">
+                        <img src="{{ asset('icons/archive-cabinet.png') }}" style="height:24px" alt="">
+                    </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a class="badge badge-pill badge-primary" href="#">.</a>
+                    <a class="btn p-1" href="">
+                        <img src="{{ asset('icons/archive-box.png') }}" style="height:24px" alt="">
+                    </a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    <a href="#" class="badge badge-pill badge-primary">.</a>
+                <li class="breadcrumb-item">
+                    <a class="btn p-1" href="">
+                        <img src="{{ asset('icons/folder.png') }}" style="height:24px" alt="">
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="btn p-1" href="">
+                        <img src="{{ asset('icons/document.png') }}" style="height:24px" alt="">
+                    </a>
                 </li>
             </ol>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                </ul>
-            </div>
         </div>
     </nav>
+@endif  
+
+            

@@ -5206,7 +5206,7 @@ input[type=button].btn-block {
   display: inline-block;
   padding-right: 0.5rem;
   color: #6c757d;
-  content: "/";
+  content: none;
 }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
@@ -6791,7 +6791,7 @@ a.close.disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 12%;
   color: #fff;
   text-align: center;
   opacity: 0.5;
@@ -6809,7 +6809,7 @@ a.close.disabled {
 .carousel-control-prev:focus,
 .carousel-control-next:hover,
 .carousel-control-next:focus {
-  color: #fff;
+  color: rgb(140, 140, 140);
   text-decoration: none;
   outline: 0;
   opacity: 0.9;

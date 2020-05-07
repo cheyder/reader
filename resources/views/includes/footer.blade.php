@@ -1,5 +1,5 @@
 <footer class="bg-white fixed-bottom shadow">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center py-2">
             <div class="">
             @if($source === 'desk')
             <a href="{{ route('desk.index') }}" class="btn btn-primary">•</a>
