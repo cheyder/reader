@@ -17,7 +17,6 @@ class CreateFoldersTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('parent_id')->nullable();
-            $table->integer('position');
             $table->timestamps();
         });
     }

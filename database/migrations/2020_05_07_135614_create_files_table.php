@@ -18,7 +18,6 @@ class CreateFilesTable extends Migration
             $table->string('title');
             $table->string('url');
             $table->foreignId('parent_id')->nullable();
-            $table->integer('position');
             $table->timestamps();
         });
     }
