@@ -1,0 +1,33 @@
+Schema::create('folders', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->foreignId('position_id');
+    $table->timestamps();
+});
+Schema::create('files', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('url');
+    $table->foreignId('position_id');
+    $table->timestamps();
+});
+Schema::create('positions', function (Blueprint $table) {
+	$table->id();
+	$table->foreignId('folder_id')->nullable();
+	$table->integer('position')->nullable();
+});
+
+//folder model 
+
+public function files() 
+{
+	$files = $this->hasManyThrough('App/File', 'App/Position');
+}
+public function subfolders()
+{
+	$folders = $this->hasManyThrough('App/Folder', 'App/Position');
+}
+
+//file model
+
+//position model
