@@ -6,19 +6,13 @@ use Illuminate\Http\Request;
 
 class ReaderController extends Controller
 {
-    public function read ()
+    public function text ()
     {
-        $source = 'read';
-        return view('read/text', [
-            'source' => $source
-        ]);
+        return view('read/text');
     }
 
-    public function index ()
+    public function contents ()
     {
-        $source = 'readIndex';
-        return view('read/index', [
-            'source' => $source
-        ]);
+        return view('read/contents');
     }
 }

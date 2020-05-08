@@ -23,9 +23,10 @@ Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
 
-Route::resources(['desk' => 'DeskController']);
+Route::get('/desk', 'DeskController@collection')->name('desk');
+Route::get('/desk/contents', 'DeskController@contents')->name('desk.contents');
 
-Route::get('/read', 'ReaderController@read')->name('read');
-Route::get('/read/index', 'ReaderController@index')->name('read.index');
+Route::get('/text', 'ReaderController@text')->name('text');
+Route::get('/text/contents', 'ReaderController@contents')->name('text.contents');
 
 
