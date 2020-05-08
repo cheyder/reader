@@ -7,28 +7,18 @@ use Illuminate\Http\Request;
 class DeskController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function collection()
     {
-        $this->middleware('auth');
+        return view('desk/collection');
     }
 
-    public function collection () {
-        $source = 'desk';
-        return view('desk/collection', [
-            'source' => $source
-        ]);
-    }
-
-    public function index()
+    public function contents ()
     {
-        $source = 'deskIndex';
-        return view('desk/index', [
-            'source' => $source
-        ]);
+        return view('desk/contents');
     }
 
 }

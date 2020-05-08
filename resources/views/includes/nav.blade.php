@@ -1,4 +1,4 @@
-@if(Request::is('*read*'))
+@if(Request::is('*text*'))
     <a class="fixed-top w-auto" style="height:48px" href="{{ route('desk') }}"></a>
 @else
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
