@@ -13,12 +13,13 @@ class CreateFoldersTable extends Migration
      */
     public function up()
     {
-        Schema::create('folders', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->foreignId('parent_id')->nullable();
-            $table->timestamps();
-        });
+      Schema::create('folders', function (Blueprint $table) {
+        $table->id();
+        $table->string('title');
+        $table->foreignId('parent_id')->nullable();
+        $table->enum('positions', ['1','2','3','4','5','6']);
+        $table->timestamps();
+      });
     }
 
     /**
@@ -28,6 +29,6 @@ class CreateFoldersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('folders');
+      Schema::dropIfExists('folders');
     }
 }

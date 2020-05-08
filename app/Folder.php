@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Folder extends Model
 {
     public function subfolders(){
-        return $this->hasMany('Folder', 'parent_id');
+        return $this->hasMany('App\Folder', 'parent_id');
     }
     public function parent() {
-        return $this->belongsTo('Folder', 'parent_id');
+        return $this->belongsTo('App\Folder', 'parent_id');
     }
     public function files(){
-        return $this->hasMany('File', 'parent_id');
+        return $this->hasMany('App\File', 'parent_id');
     }
 }

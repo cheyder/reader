@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Folder::class, function (Faker $faker) {
     return [
-        'title' => $faker->sentence(6, true)
+        'title' => $faker->sentence(3, true),
+        
     ];
 });
