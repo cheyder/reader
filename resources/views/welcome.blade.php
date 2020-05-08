@@ -8,7 +8,7 @@
                     <h1 class="display-4">a reader for reading</h1>
                     <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                     @auth
-                    <a class="btn btn-primary btn-lg" href="{{ route('desk.index') }}" role="button">Reader</a>
+                    <a class="btn btn-primary btn-lg" href="{{ route('desk') }}" role="button">Reader</a>
                     <a class="btn btn-outline-primary btn-lg" href="{{ route('settings') }}" role="button">Settings</a>
                     @else
                     <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Open yours</a>
