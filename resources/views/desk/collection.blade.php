@@ -12,15 +12,7 @@
         <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
-              <img 
-              class="dropdown-toggle float-right" 
-              style="height: 36px" 
-              src="{{ asset('icons/echo-dot.png') }}" 
-              alt="" 
-              id="dropdownMenuButton" 
-              data-toggle="dropdown" 
-              aria-haspopup="true" 
-              aria-expanded="false">
+              <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Select</a>
                 <a class="dropdown-item" href="#">Insert</a>
@@ -49,15 +41,7 @@
         <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
-              <img 
-              class="dropdown-toggle float-right" 
-              style="height: 36px" 
-              src="{{ asset('icons/echo-dot.png') }}" 
-              alt="" 
-              id="dropdownMenuButton" 
-              data-toggle="dropdown" 
-              aria-haspopup="true" 
-              aria-expanded="false">
+              <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Select</a>
                 <a class="dropdown-item" href="#">Delete</a>
@@ -106,12 +90,12 @@
               <input type="text" class="form-control">
             </div>
           </div>
-        </div>
-        <div class="card-footer justify-content-center">
-          <a href="#" class="btn btn-primary">Create</a>
+          <div class="card-footer justify-content-center">
+            <a href="#" class="btn btn-primary">Create</a>
+          </div>
         </div>
       </div>
-    </div>
+  </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -120,9 +104,10 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>
-  @endsection
-
+</div>
+@endsection
+  <?php /* ?>
   @section('footer')
   @include('includes/footer')
   @endsection
+<?php */ ?>
