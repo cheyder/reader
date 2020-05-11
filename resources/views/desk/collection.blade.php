@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-    </div>
+  </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -104,8 +104,8 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>
-  @endsection
+</div>
+@endsection
   <?php /* ?>
   @section('footer')
   @include('includes/footer')
