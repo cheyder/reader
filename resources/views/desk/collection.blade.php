@@ -122,7 +122,8 @@
     </a>
   </div>
   @endsection
-
+<?php /* ?>
   @section('footer')
   @include('includes/footer')
   @endsection
+<?php */ ?>
