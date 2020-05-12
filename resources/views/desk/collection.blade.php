@@ -31,12 +31,10 @@
           <div class="card-body">
             <h5 class="card-title">{{ $folder->title }}</h5>
             <div class="list-group">
-              <?php $subfolders = $folder->subfolders()->get(); ?>
-              @foreach($subfolders as $subfolder)
+              @foreach($folder->subfolders as $subfolder)
               <a href="{{ route('desk', $subfolder->id) }}" class="list-group-item list-group-item-action">{{ $subfolder->title }}</a>
               @endforeach
-              <?php $files = $folder->files()->get(); ?>
-              @foreach($files as $subfile)
+              @foreach($folder->files as $subfile)
               <a href="" class="list-group-item list-group-item-action">{{ $subfile->title }}</a>
               @endforeach
             </div>
@@ -70,42 +68,53 @@
       </div>
       @endforeach
       <div class="carousel-item">
-        <div class="card">
-          <div class="card-body">
-            <!--<h5 class="card-title">Special title treatment</h5>-->
-            <p class="card-text">Get a new text or create a new folder for your collection.</p>
+        <form method="POST" action="{{ route('desk.store', ['currentFolderId' => $currentFolder]) }}">
+          @csrf
+          <div class="card">
+            <div class="card-body">
+              <!--<h5 class="card-title">Special title treatment</h5>-->
+              <p class="card-text">Get a new text or create a new folder for your collection.</p>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Position</label>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputPosition">Position</label>
+                </div>
+                <select class="custom-select" id="inputPosition" name="position">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                  <option value="4">Four</option>
+                  <option value="5">Five</option>
+                  <option value="6">Six</option>
+                </select>
               </div>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Type</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputType">Type</label>
+                </div>
+                <select class="custom-select" id="inputType" name="type">
+                  <option selected>Choose...</option>
+                  <option value="file">new Text</option>
+                  <option value="folder">new Folder</option>
+                </select>
               </div>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">new Text</option>
-                <option value="2">new Folder</option>
-              </select>
-            </div>
 
-            <div class="input-group mb-3">
-              <input type="text" class="form-control">
+              <div class="input-group mb-3">
+                <input name="title" type="text" class="form-control" placeholder="title">
+              </div>
+
+              <div class="input-group mb-3">
+                <input name="url" type="text" class="form-control" placeholder="url">
+              </div>
+            </div>
+            <div class="card-footer justify-content-center">
+              <button href="#" class="btn btn-primary" type="submit">Create</button>
             </div>
           </div>
-          <div class="card-footer justify-content-center">
-            <a href="#" class="btn btn-primary">Create</a>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">

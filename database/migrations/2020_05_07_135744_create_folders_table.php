@@ -17,7 +17,7 @@ class CreateFoldersTable extends Migration
         $table->id();
         $table->string('title');
         $table->foreignId('parent_id')->nullable();
-        $table->enum('positions', ['1','2','3','4','5','6'])->nullable();
+        $table->enum('position', ['1','2','3','4','5','6'])->nullable();
         $table->timestamps();
       });
     }

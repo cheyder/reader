@@ -25,6 +25,7 @@ Route::get('/settings', function () {
 
 Route::get('/desk/{currentFolder}', 'DeskController@collection')->name('desk');
 Route::get('/desk/contents', 'DeskController@contents')->name('desk.contents');
+Route::post('/desk/{currentFolderId}', 'DeskController@store')->name('desk.store');
 
 Route::get('/text', 'ReaderController@text')->name('text');
 Route::get('/text/contents', 'ReaderController@contents')->name('text.contents');

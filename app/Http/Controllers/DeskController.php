@@ -31,4 +31,23 @@ class DeskController extends Controller
         return view('desk/contents');
     }
 
+    public function store ($currentFolderId)
+    {
+      if (request(['type'])['type'] == 'folder'){
+        $this->validateFolder();
+        $newFolder = Folder::create(request(['title']));
+        $newFolder->parent_id = $currentFolderId;
+        $newFolder->save();
+      }
+      return redirect(route('desk', ['currentFolder' => $currentFolderId]));
+    }
+
+    private function validateFolder ()
+    {
+      return request()->validate([
+        'title' => 'required|min:3',
+        'position' => 'required'
+      ]);
+    }
+
 }

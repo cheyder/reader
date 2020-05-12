@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Folder extends Model
 {
-    public function subfolders(){
-        return $this->hasMany('App\Folder', 'parent_id');
-    }
-    public function parent() {
-        return $this->belongsTo('App\Folder', 'parent_id');
-    }
-    public function files(){
-        return $this->hasMany('App\File', 'parent_id');
-    }
+  protected $fillable = ['title'];
+  
+  public function subfolders(){
+      return $this->hasMany('App\Folder', 'parent_id');
+  }
+  public function parent() {
+      return $this->belongsTo('App\Folder', 'parent_id');
+  }
+  public function files(){
+      return $this->hasMany('App\File', 'parent_id');
+  }
 }
