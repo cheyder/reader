@@ -10,6 +10,14 @@
     <div class="carousel-inner col-10">
       <div class="carousel-item active">
         <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ $folder->title }}</h5>
+          </div>
+        </div>
+      </div>
+      @foreach($folders as $folder)
+      <div class="carousel-item">
+        <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,15 +29,16 @@
             </div>
           </div>
           <div class="card-body">
-            <h5 class="card-title">folder title</h5>
+            <h5 class="card-title">{{ $folder->title }}</h5>
             <div class="list-group">
-              <a href="#" class="list-group-item list-group-item-action active">
-                Cras justo odio
-              </a>
-              <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-              <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-              <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-              <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
+              <?php $subfolders = $folder->subfolders()->get(); ?>
+              @foreach($subfolders as $subfolder)
+              <a href="{{ route('desk', $subfolder->id) }}" class="list-group-item list-group-item-action">{{ $subfolder->title }}</a>
+              @endforeach
+              <?php $files = $folder->files()->get(); ?>
+              @foreach($files as $subfile)
+              <a href="" class="list-group-item list-group-item-action">{{ $subfile->title }}</a>
+              @endforeach
             </div>
           </div>
           <div class="card-footer justify-content-center">
@@ -37,6 +46,8 @@
           </div>
         </div>
       </div>
+      @endforeach
+      @foreach($files as $file)
       <div class="carousel-item">
         <div class="card">
           <div class="card-header py-0">
@@ -49,7 +60,7 @@
             </div>
           </div>
           <div class="card-body">
-            <h5 class="card-title">text title</h5>
+            <h5 class="card-title">{{ $file->title }}</h5>
             <p class="card-text">First 100 words: Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quia sunt consectetur, voluptates atque totam a eum magni non beatae officia eius explicabo recusandae. Saepe fuga modi consequatur repellendus culpa!</p>
           </div>
           <div class="card-footer justify-content-center">
@@ -57,6 +68,7 @@
           </div>
         </div>
       </div>
+      @endforeach
       <div class="carousel-item">
         <div class="card">
           <div class="card-body">
@@ -95,7 +107,7 @@
           </div>
         </div>
       </div>
-  </div>
+    </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -104,8 +116,8 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-</div>
-@endsection
+  </div>
+  @endsection
   <?php /* ?>
   @section('footer')
   @include('includes/footer')

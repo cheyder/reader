@@ -13,43 +13,50 @@ class FolderSeeder extends Seeder
   public function run()
   {
     DB::table('folders')->insert([
+      'title' => 'Desk',
+      'parent_id' => NULL,
+      'positions' => NULL,
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
       'title' => 'Beruf',
-      'parent_id' => NULL,
-      'positions' => '1',
-      'created_at' => now(),
-      'updated_at' => now()
-    ]);
-    DB::table('folders')->insert([
-      'title' => 'Hobby',
-      'parent_id' => NULL,
-      'positions' => '2',
-      'created_at' => now(),
-      'updated_at' => now()
-    ]);
-    DB::table('folders')->insert([
-      'title' => 'Rezepte',
-      'parent_id' => NULL,
-      'positions' => '5',
-      'created_at' => now(),
-      'updated_at' => now()
-    ]);
-    DB::table('folders')->insert([
-      'title' => 'Weiterbildung',
       'parent_id' => 1,
       'positions' => '1',
       'created_at' => now(),
       'updated_at' => now()
     ]);
     DB::table('folders')->insert([
-      'title' => 'Neues Projekt',
+      'title' => 'Hobby',
+      'parent_id' => 1,
+      'positions' => '2',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'title' => 'Rezepte',
+      'parent_id' => 1,
+      'positions' => '5',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'title' => 'Weiterbildung',
       'parent_id' => 2,
       'positions' => '1',
       'created_at' => now(),
       'updated_at' => now()
     ]);
     DB::table('folders')->insert([
-      'title' => 'Schnelle Küche',
+      'title' => 'Neues Projekt',
       'parent_id' => 3,
+      'positions' => '1',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'title' => 'Schnelle Küche',
+      'parent_id' => 4,
       'positions' => '2',
       'created_at' => now(),
       'updated_at' => now()

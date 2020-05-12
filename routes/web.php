@@ -23,7 +23,7 @@ Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
 
-Route::get('/desk', 'DeskController@collection')->name('desk');
+Route::get('/desk/{currentFolder}', 'DeskController@collection')->name('desk');
 Route::get('/desk/contents', 'DeskController@contents')->name('desk.contents');
 
 Route::get('/text', 'ReaderController@text')->name('text');
