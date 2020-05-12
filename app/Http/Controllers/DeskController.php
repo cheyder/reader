@@ -34,10 +34,16 @@ class DeskController extends Controller
     public function store ($currentFolderId)
     {
       if (request(['type'])['type'] == 'folder'){
-        $this->validateFolder();
-        $newFolder = Folder::create(request(['title']));
+        $folder = $this->validateFolder();
+        $newFolder = Folder::create($folder);
         $newFolder->parent_id = $currentFolderId;
         $newFolder->save();
+      } 
+      elseif (request(['type'])['type'] == 'file'){
+        $file = $this->validateFile();
+        $newFile = File::create($file);
+        $newFile->parent_id = $currentFolderId;
+        $newFile->save();
       }
       return redirect(route('desk', ['currentFolder' => $currentFolderId]));
     }
@@ -47,6 +53,15 @@ class DeskController extends Controller
       return request()->validate([
         'title' => 'required|min:3',
         'position' => 'required'
+      ]);
+    }
+
+    private function validateFile ()
+    {
+      return request()->validate([
+        'title' => 'required',
+        'position' => 'required',
+        'url' => 'required'
       ]);
     }
 

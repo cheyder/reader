@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="#" class="btn btn-primary">Open</a>
+            <a href="{{ route('desk', $folder->id) }}" class="btn btn-primary">Open</a>
           </div>
         </div>
       </div>
