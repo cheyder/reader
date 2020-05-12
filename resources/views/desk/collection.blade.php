@@ -24,7 +24,11 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Select</a>
                 <a class="dropdown-item" href="#">Insert</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <form method="POST" action="{{ route('desk.delete', $folder) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button class="dropdown-item" type="submit">Delete</button>
+                </form>
               </div>
             </div>
           </div>
@@ -53,7 +57,11 @@
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Select</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <form method="POST" action="">
+                  @csrf
+                  @method('DELETE')
+                  <button class="dropdown-item" type="submit">Delete</button>
+                </form>
               </div>
             </div>
           </div>
