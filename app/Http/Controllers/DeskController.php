@@ -13,11 +13,14 @@ class DeskController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function collection($currentFolder)
+  public function collection($currentFolder, Request $request)
   {
+    
     $folder = Folder::find($currentFolder);
     $subfolders = $folder->subfolders()->get();
     $subfiles = $folder->files()->get();
+    $this->calculateNestingLevels($currentFolder);
+
     return view('desk/collection', [
       'folder' => $folder,
       'folders' => $subfolders,
@@ -77,6 +80,24 @@ class DeskController extends Controller
       'position' => 'required',
       'url' => 'required'
     ]);
+  }
+
+  private function calculateNestingLevels ($currentFolder)
+  {
+    session()->forget('nestingLevels');
+    $nestingLevels = [];
+    session()->put('nestingLevels', $nestingLevels);
+    $this->addAllParents($currentFolder);
+  }
+
+  private function addAllParents ($currentFolderId) 
+  {
+    $currentFolder = Folder::find($currentFolderId);
+    $parentId = $currentFolder->parent_id;
+    session()->push('nestingLevels', $parentId);
+    if ($parentId > 0) {
+      $this->addAllParents($parentId);
+    }
   }
 
 }
