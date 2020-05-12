@@ -24,15 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
   public function boot()
   {
-    try {
-      View::composer('*', function ($view) {
-        $view->with(
-          'nestingLevel',
-          session()->has('nestingLevels')
-          ? count(session()->get('nestingLevels'))
-          : 0
-        );
-      });
-    } catch (\Exception $e) {}
+  
   }
 }

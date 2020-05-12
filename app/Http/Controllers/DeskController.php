@@ -20,12 +20,15 @@ class DeskController extends Controller
     $subfolders = $folder->subfolders()->get();
     $subfiles = $folder->files()->get();
     $this->calculateNestingLevels($currentFolder);
-
+    $nestingLevels = session()->get('nestingLevels');
+    $nestingDepth = count($nestingLevels);
     return view('desk/collection', [
       'folder' => $folder,
       'folders' => $subfolders,
       'files' => $subfiles,
-      'currentFolder' => $currentFolder
+      'currentFolder' => $currentFolder,
+      'nestingLevels' => $nestingLevels,
+      'nestingDepth' => $nestingDepth
     ]);
   }
 
@@ -94,7 +97,8 @@ class DeskController extends Controller
   {
     $currentFolder = Folder::find($currentFolderId);
     $parentId = $currentFolder->parent_id;
-    session()->push('nestingLevels', $parentId);
+    $folderId = $currentFolder->id;
+    session()->push('nestingLevels', $folderId);
     if ($parentId > 0) {
       $this->addAllParents($parentId);
     }
