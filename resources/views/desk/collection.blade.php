@@ -15,6 +15,7 @@
           </div>
         </div>
       </div>
+
       @foreach($folders as $folder)
       <div class="carousel-item">
         <div class="card">
@@ -24,7 +25,10 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Select</a>
                 <a class="dropdown-item" href="#">Insert</a>
-                <form method="POST" action="{{ route('desk.delete', $folder) }}">
+                <form method="POST" action="{{ route('desk.delete', [
+                  'elementId' => $folder->id,
+                  'elementType' => 'folder'
+                  ]) }}">
                   @csrf
                   @method('DELETE')
                   <button class="dropdown-item" type="submit">Delete</button>
@@ -49,6 +53,7 @@
         </div>
       </div>
       @endforeach
+
       @foreach($files as $file)
       <div class="carousel-item">
         <div class="card">
@@ -57,7 +62,10 @@
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Select</a>
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('desk.delete', [
+                  'elementType' => 'file',
+                  'elementId' => $file->id
+                  ]) }}">
                   @csrf
                   @method('DELETE')
                   <button class="dropdown-item" type="submit">Delete</button>

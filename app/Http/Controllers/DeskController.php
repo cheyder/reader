@@ -48,10 +48,18 @@ class DeskController extends Controller
     return redirect(route('desk', ['currentFolder' => $currentFolderId]));
   }
 
-  public function destroy (Folder $folder)
+  public function delete ($elementType, $elementId)
   {
-    $folder->delete();
-    return redirect(route('desk', ['currentFolder' => $folder->parent_id]));
+    if ($elementType == 'folder') {
+      $folder = Folder::find($elementId);
+      $folder->delete();
+      return redirect(route('desk', ['currentFolder' => $folder->parent_id]));
+    }
+    if ($elementType == 'file') {
+      $file = File::find($elementId);
+      $file->delete();
+      return redirect(route('desk', ['currentFolder' => $file->parent_id]));
+    }
   }
 
   private function validateFolder ()
