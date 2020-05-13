@@ -10,7 +10,7 @@ use andreskrey\Readability\ParseException;
 
 class ReaderController extends Controller
 {
-    public function text ($url)
+    public function text ()
     {
       $simpleSite = 'https://www.ohnemist.de/bauernbrot-mit-sauerteig-roggenvollkornmehl'; //+-
       $tableSite = 'https://arp242.github.io/hello-css/demo/README.html'; //+
@@ -20,7 +20,7 @@ class ReaderController extends Controller
       $scienceSite = 'https://www.scientificamerican.com/article/reading-paper-screens/'; //++
 
       $readability = new Readability(new Configuration());
-
+      $url = request()->url;
       $html = file_get_contents($url);
 
       try {
