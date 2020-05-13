@@ -11,11 +11,7 @@
     <div class="carousel-inner col-10">
       <div class="carousel-item active">
         <div class="card" style="height: 80vh;">
-          <div class="card-body">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos incidunt magnam vitae, tenetur quam provident culpa laboriosam. Fugiat, nihil. Alias ea illum asperiores velit ipsam rerum in at. Maxime, repellat.
-            Sapiente sit nobis illum soluta alias quod quibusdam, nemo eaque non error eveniet eum, ab doloremque obcaecati. Doloribus dolor impedit possimus voluptates aspernatur, laudantium omnis vitae consectetur quos laborum repellat?
-            Architecto ut dolor aliquam sequi cumque blanditiis repudiandae, hic similique quidem quisquam consequatur? Neque fugit officia suscipit dolor, error temporibus nulla in quibusdam, iste eius adipisci minima. Dolores, culpa est
-          </div>
+          <div class="card-body">{{ $text }}</div>
         </div>
       </div>
       <div class="carousel-item">
