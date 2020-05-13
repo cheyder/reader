@@ -11,12 +11,7 @@
     <div class="carousel-inner col-10">
       <div class="carousel-item active">
         <div class="card" style="height: 80vh;">
-          <div class="card-body">{!! $text->getTitle() !!}</div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card overflow-auto" style="height: 80vh;">
-          <div class="card-body">{!! $text->getContent() !!} </div>
+          <div class="card-body">{!! $text !!}</div>
         </div>
       </div>
       <div class="carousel-item">
