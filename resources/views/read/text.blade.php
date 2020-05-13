@@ -10,7 +10,7 @@
   <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false">
     <div class="carousel-inner col-10">
       <div class="carousel-item active">
-        <div class="card" style="height: 80vh;">
+        <div class="card overflow-auto" style="height: 80vh;">
           <div class="card-body">{!! $text !!}</div>
         </div>
       </div>

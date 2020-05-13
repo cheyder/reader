@@ -21,22 +21,32 @@ class ReaderController extends Controller
 
       $readability = new Readability(new Configuration());
       $url = request()->url;
+      session()->put('url', $url);
       $html = file_get_contents($url);
 
       try {
           $readability->parse($html);
           $text = $readability;
+          session()->put('text', $text);
       } catch (ParseException $e) {
           echo sprintf('Error processing text: %s', $e->getMessage());
       }
+
+      $nestingLevels = session()->get('nestingLevels');
               
       return view('read/text', [
-        'text' => $text
+        'text' => $text,
+        'nestingLevels' => $nestingLevels
       ]);
     }
 
     public function contents ()
     {
-        return view('read/contents');
+      $text = session()->get('text');
+      $url = session()->get('url');
+      return view('read/contents', [
+        'text' => $text,
+        'url' => $url
+      ]);
     }
 }

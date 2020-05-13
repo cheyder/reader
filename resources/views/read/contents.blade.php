@@ -11,7 +11,7 @@
       <div class="card overflow-auto" style="height: 80vh;">
         <div class="card-body">
           <div class="list-group list-group-root well">
-            <a href="#" class="list-group-item">Item 1</a>
+            <a href="#" class="list-group-item">{{ $text->getTitle() }}</a>
             <div class="list-group">
 
               <a href="#" class="list-group-item">Item 1.1</a>
