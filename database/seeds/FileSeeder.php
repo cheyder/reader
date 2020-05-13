@@ -17,7 +17,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url'=> $faker->url(),
       'parent_id' => 1,
-      'positions' => '3',
+      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -25,7 +25,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url'=> $faker->url(),
       'parent_id' => 2,
-      'positions' => '2',
+      'position' => '2',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -33,7 +33,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 3,
-      'positions' => '2',
+      'position' => '2',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -41,7 +41,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 3,
-      'positions' => '3',
+      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -49,7 +49,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 4,
-      'positions' => '1',
+      'position' => '1',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -57,7 +57,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 4,
-      'positions' => '3',
+      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -65,7 +65,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 5,
-      'positions' => '1',
+      'position' => '1',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -73,7 +73,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 5,
-      'positions' => '3',
+      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -81,7 +81,7 @@ class FileSeeder extends Seeder
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 5,
-      'positions' => '5',
+      'position' => '5',
       'created_at' => now(),
       'updated_at' => now()
       ]);
