@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use andreskrey\Readability\Readability;
 use andreskrey\Readability\Configuration;
 use andreskrey\Readability\ParseException;
+use DOMDocument;
+use KubAT\PhpSimple\HtmlDomParser;
 
 
 class ReaderController extends Controller
@@ -27,7 +29,8 @@ class ReaderController extends Controller
       try {
           $readability->parse($html);
           $text = $readability;
-          session()->put('text', $text);
+          $html = $text->getHTMLAsString();
+          session()->put('html', $html);
       } catch (ParseException $e) {
           echo sprintf('Error processing text: %s', $e->getMessage());
       }
@@ -42,11 +45,40 @@ class ReaderController extends Controller
 
     public function contents ()
     {
-      $text = session()->get('text');
+      $html = session()->get('html');
       $url = session()->get('url');
+      //try again with dom-parser?!
+      $dom = new DOMDocument();
+      @$dom->loadHTML($html);
+      $h1 = $dom->getElementsByTagName('h1');
+      $h2s = $dom->getElementsByTagName('h2');
+      
+
       return view('read/contents', [
-        'text' => $text,
-        'url' => $url
+        'url' => $url,
+        'h1' => $h1,
+        'h2s' => $h2s
       ]);
     }
+
+    public function arrayHwithIds () {
+    $length = $h1->item($i)->attributes->length;
+    for ($i = 0; $i < $length; ++$i) {
+      if ($h1->attributes->item($i)->name == 'id') {
+        $id = $h1->attributes->item($i)->nodeValue;
+      }
+    }
+    }
+
+    public function (arrayHeaders) {
+    $headings = [];
+    for ($i = 0; $i < $h2s->length; $i++) {
+      foreach ($h2s->item($i)->childNodes as $childNode) {
+        if ($childNode->nodeName == 'h*') {
+          array_push($headings, $childNode);
+        }
+      }
+    }
+    }
+
 }
