@@ -45,22 +45,24 @@ class ReaderController extends Controller
 
     public function contents ()
     {
-      $html = session()->get('html');
+      $html = HTMLDomParser::str_get_html(session()->get('html'));
       $url = session()->get('url');
+      $headers = $html->find('h1, h2, h3');
       //try again with dom-parser?!
+      
+
+      return view('read/contents', [
+        'url' => $url,
+        'headers' => $headers
+      ]);
+    }
+    public function parkingDOMDocument () {
       $dom = new DOMDocument();
       @$dom->loadHTML($html);
       $h1 = $dom->getElementsByTagName('h1');
       $h2s = $dom->getElementsByTagName('h2');
       
-
-      return view('read/contents', [
-        'url' => $url,
-        'h1' => $h1,
-        'h2s' => $h2s
-      ]);
     }
-
     public function arrayHwithIds () {
     $length = $h1->item($i)->attributes->length;
     for ($i = 0; $i < $length; ++$i) {
@@ -70,7 +72,7 @@ class ReaderController extends Controller
     }
     }
 
-    public function (arrayHeaders) {
+    public function arrayHeaders () {
     $headings = [];
     for ($i = 0; $i < $h2s->length; $i++) {
       foreach ($h2s->item($i)->childNodes as $childNode) {
