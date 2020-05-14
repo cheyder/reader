@@ -17,11 +17,29 @@
             @endif
             <div class="list-group">
               @if($header->tag === "h2")
-              <a href="{{ route('text') }}" class="list-group-item">{{ $header->innertext }}</a>
+                @if(count($header->children) > 0)
+                  @foreach($header->children as $child)
+                  <?php similar_text($child->id, $child->innertext, $percent); ?>
+                    @if($percent > 80)
+                    <a href="{{ route('text') }}" class="list-group-item">{{$child->innertext}}</a>
+                    @endif
+                  @endforeach
+                @else
+                <a href="{{ route('text') }}" class="list-group-item">{{$header->innertext}}</a>
+                @endif
               @endif
               <div class="list-group">
                 @if($header->tag === "h3")
-                <a href="{{ route('text') }}" class="list-group-item">{{ $header->innertext }}</a>
+                  @if(count($header->children) > 0)
+                    @foreach($header->children as $child)
+                    <?php similar_text($child->id, $child->innertext, $percent); ?>
+                      @if($percent > 80)
+                      <a href="{{ route('text') }}" class="list-group-item">{{$child->innertext}}</a>
+                      @endif
+                    @endforeach
+                  @else
+                  <a href="{{ route('text') }}" class="list-group-item">{{$header->innertext}}</a>
+                  @endif
                 @endif
               </div>
             </div>
