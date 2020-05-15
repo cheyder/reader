@@ -43,7 +43,7 @@
               <a href="{{ route('desk', $subfolder->id) }}" class="list-group-item list-group-item-action">{{ $subfolder->title }}</a>
               @endforeach
               @foreach($folder->files as $subfile)
-              <a href="" class="list-group-item list-group-item-action">{{ $subfile->title }}</a>
+              <a href="{{ route('text', ['url'=> $subfile->url]) }}" class="list-group-item list-group-item-action">{{ $subfile->title }}</a>
               @endforeach
             </div>
           </div>
@@ -78,17 +78,17 @@
             <p class="card-text">First 100 words: Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quia sunt consectetur, voluptates atque totam a eum magni non beatae officia eius explicabo recusandae. Saepe fuga modi consequatur repellendus culpa!</p>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="{{ route('text') }}" class="btn btn-primary">Read</a>
+            <a href="{{ route('text', ['url'=> $file->url]) }}" class="btn btn-primary">Read</a>
           </div>
         </div>
       </div>
       @endforeach
+
       <div class="carousel-item">
         <form method="POST" action="{{ route('desk.store', ['currentFolderId' => $currentFolder]) }}">
           @csrf
           <div class="card">
             <div class="card-body">
-              <!--<h5 class="card-title">Special title treatment</h5>-->
               <p class="card-text">Get a new text or create a new folder for your collection.</p>
 
 
@@ -143,8 +143,3 @@
     </a>
   </div>
   @endsection
-  <?php /* ?>
-  @section('footer')
-  @include('includes/footer')
-  @endsection
-<?php */ ?>

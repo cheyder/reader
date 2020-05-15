@@ -28,7 +28,7 @@ Route::get('/desk/contents', 'DeskController@contents')->name('desk.contents');
 Route::post('/desk/{currentFolderId}', 'DeskController@store')->name('desk.store');
 Route::delete('/desk/delete/{elementType}/{elementId}', 'DeskController@delete')->name('desk.delete');
 
-Route::get('/text', 'ReaderController@text')->name('text');
+Route::get('/text/', 'ReaderController@text')->name('text');
 Route::get('/text/contents', 'ReaderController@contents')->name('text.contents');
 
 
