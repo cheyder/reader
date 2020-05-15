@@ -25,6 +25,8 @@ class ReaderController extends Controller
     session()->put('url', $url);
     $html = file_get_contents($url);
 
+    $testXSS = '<script>alert(\'hello\')</script><p>If you can only see this, script-tags have been removed.';
+
     try {
         $readability->parse($html);
         $text = $readability;

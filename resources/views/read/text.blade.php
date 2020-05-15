@@ -13,14 +13,6 @@
         <div class="card overflow-auto" style="height: 80vh;">
           <div class="card-body">{!! $text !!}</div>
         </div>
-        @if(isset($id))
-        <a id="trampoline" href="#{{ $id }}"></a>
-        <script>
-          window.onload = function triggerTrampoline() {
-            document.getElementById("trampoline").click();
-          }
-        </script>
-        @endif
       </div>
       <div class="carousel-item">
         <div class="card" style="height: 80vh;">
