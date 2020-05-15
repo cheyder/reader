@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\File;
 use App\Folder;
 
@@ -17,19 +18,22 @@ class DeskController extends Controller
   {
     
     $folder = Folder::find($currentFolder);
-    $subfolders = $folder->subfolders()->get();
-    $subfiles = $folder->files()->get();
-    $this->calculateNestingLevels($currentFolder);
-    $nestingLevels = session()->get('nestingLevels');
-    $nestingDepth = count($nestingLevels);
-    return view('desk/collection', [
-      'folder' => $folder,
-      'folders' => $subfolders,
-      'files' => $subfiles,
-      'currentFolder' => $currentFolder,
-      'nestingLevels' => $nestingLevels,
-      'nestingDepth' => $nestingDepth
-    ]);
+    if(Gate::allows('view-collection', $folder)) {
+      $subfolders = $folder->subfolders()->get();
+      $subfiles = $folder->files()->get();
+      $this->calculateNestingLevels($currentFolder);
+      $nestingLevels = session()->get('nestingLevels');
+      $nestingDepth = count($nestingLevels);
+      return view('desk/collection', [
+        'folder' => $folder,
+        'folders' => $subfolders,
+        'files' => $subfiles,
+        'currentFolder' => $currentFolder,
+        'nestingLevels' => $nestingLevels,
+        'nestingDepth' => $nestingDepth
+      ]);
+    } return back();
+   
   }
 
   public function contents ()
@@ -39,15 +43,19 @@ class DeskController extends Controller
 
   public function store ($currentFolderId)
   {
+    $userId = auth()->user()->id;
+
     if (request(['type'])['type'] == 'folder'){
       $folder = $this->validateFolder();
       $newFolder = Folder::create($folder);
+      $newFolder->user_id = $userId;
       $newFolder->parent_id = $currentFolderId;
       $newFolder->save();
     } 
     elseif (request(['type'])['type'] == 'file'){
       $file = $this->validateFile();
       $newFile = File::create($file);
+      $newFile->user_id = $userId;
       $newFile->parent_id = $currentFolderId;
       $newFile->save();
     }
