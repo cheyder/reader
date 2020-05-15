@@ -13,38 +13,37 @@
           <div class="list-group list-group-root well">
             @foreach($headers as $header)
             @if($header->tag === "h1")
-            <a href="#{{ route('text', ['url' => $url, 'id' => '#'.$header->id]) }}" class="list-group-item">{{ $header->innertext }}</a>
+            <a href="{{ route('text', ['url' => $url, 'id' => $header->id]) }}" class="list-group-item">{{ $header->innertext }}</a>
             @endif
             <div class="list-group">
               @if($header->tag === "h2")
-                @if(count($header->children) > 0)
-                  @foreach($header->children as $child)
-                  <?php similar_text($child->id, $child->innertext, $percent); ?>
-                    @if($percent > 80)
-                    <a href="{{ route('text') }}" class="list-group-item">{{$child->innertext}}</a>
-                    @endif
-                  @endforeach
-                @else
-                <a href="{{ route('text') }}" class="list-group-item">{{$header->innertext}}</a>
-                @endif
+              @if(count($header->children) > 0)
+              @foreach($header->children as $child)
+              <?php similar_text($child->id, $child->innertext, $percent); ?>
+              @if($percent > 80)
+              <a href="{{ route('text', ['url' => $url, 'id' => $header->id]) }}" class="list-group-item">{{$child->innertext}}</a>
+              @endif
+              @endforeach
+              @else
+              <a href="{{ route('text', ['url' => $url, 'id' => $header->id]) }}" class="list-group-item">{{$header->innertext}}</a>
+              @endif
               @endif
               <div class="list-group">
                 @if($header->tag === "h3")
-                  @if(count($header->children) > 0)
-                    @foreach($header->children as $child)
-                    <?php similar_text($child->id, $child->innertext, $percent); ?>
-                      @if($percent > 80)
-                      <a href="{{ route('text') }}" class="list-group-item">{{$child->innertext}}</a>
-                      @endif
-                    @endforeach
-                  @else
-                  <a href="{{ route('text') }}" class="list-group-item">{{$header->innertext}}</a>
-                  @endif
+                @if(count($header->children) > 0)
+                @foreach($header->children as $child)
+                <?php similar_text($child->id, $child->innertext, $percent); ?>
+                @if($percent > 80)
+                <a href="{{ route('text', ['url' => $url, 'id' => $header->id]) }}" class="list-group-item">{{$child->innertext}}</a>
+                @endif
+                @endforeach
+                @else
+                <a href="{{ route('text', ['url' => $url, 'id' => $header->id]) }}" class="list-group-item">{{$header->innertext}}</a>
+                @endif
                 @endif
               </div>
             </div>
             @endforeach
-
             <?php /* ?>
             @for($i = 0; $i < $h1->length; $i++)
               <a href="#" class="list-group-item">{{ $h1->item($i)->nodeValue }}</a>
