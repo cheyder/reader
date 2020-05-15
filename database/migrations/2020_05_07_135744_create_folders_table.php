@@ -15,6 +15,7 @@ class CreateFoldersTable extends Migration
     {
       Schema::create('folders', function (Blueprint $table) {
         $table->id();
+        $table->foreignId('user_id');
         $table->string('title');
         $table->foreignId('parent_id')->nullable();
         $table->enum('position', ['1','2','3','4','5','6'])->nullable();

@@ -15,6 +15,7 @@ class CreateFilesTable extends Migration
     {
       Schema::create('files', function (Blueprint $table) {
         $table->id();
+        $table->foreignId('user_id');
         $table->string('title');
         $table->string('url')->default('');
         $table->foreignId('parent_id')->nullable();
