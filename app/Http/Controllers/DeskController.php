@@ -13,7 +13,7 @@ class DeskController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function collection($currentFolder, Request $request)
+  public function collection($currentFolder)
   {
     
     $folder = Folder::find($currentFolder);
@@ -71,17 +71,17 @@ class DeskController extends Controller
   private function validateFolder ()
   {
     return request()->validate([
-      'title' => 'required|min:3',
-      'position' => 'required'
+      'title' => 'required|string|max:32',
+      'position' => 'required|integer|between:1,6'
     ]);
   }
 
   private function validateFile ()
   {
     return request()->validate([
-      'title' => 'required',
-      'position' => 'required',
-      'url' => 'required'
+      'title' => 'required|string|max:32',
+      'position' => 'required|integer|between:1,6',
+      'url' => 'required|url'
     ]);
   }
 
