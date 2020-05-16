@@ -14,6 +14,7 @@ class FileSeeder extends Seeder
     {
       $faker = Faker\Factory::create();
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url'=> $faker->url(),
       'parent_id' => 1,
@@ -22,6 +23,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url'=> $faker->url(),
       'parent_id' => 2,
@@ -30,6 +32,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 3,
@@ -38,6 +41,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 3,
@@ -46,6 +50,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 4,
@@ -54,6 +59,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 4,
@@ -62,6 +68,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 5,
@@ -70,6 +77,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 5,
@@ -78,6 +86,7 @@ class FileSeeder extends Seeder
       'updated_at' => now()
       ]);
       DB::table('files')->insert([
+      'user_id' => 1,
       'title' => $faker->sentence(6, true),
       'url' => $faker->url(),
       'parent_id' => 5,

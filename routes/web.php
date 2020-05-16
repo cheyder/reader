@@ -16,7 +16,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+  
+  if (auth()->user() !== NULL) {
+    $userId = auth()->user()->id;
+    $userDeskFolder = \App\Folder::where('user_id', $userId)->first();
+    $userDeskFolderId = $userDeskFolder->id;
+    return view('welcome', ['userDeskFolderId' => $userDeskFolderId]);
+  }
+  return view('welcome');
+    
 })->name('welcome');
 
 Route::get('/settings', function () {
