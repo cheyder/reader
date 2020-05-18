@@ -75,10 +75,10 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ $file->title }}</h5>
-            <p class="card-text">First 100 words: Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quia sunt consectetur, voluptates atque totam a eum magni non beatae officia eius explicabo recusandae. Saepe fuga modi consequatur repellendus culpa!</p>
+            <p class="card-text">{{ $file->abstract }}</p>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="{{ route('text', ['id'=> $file->id]) }}" class="btn btn-primary">Read</a>
+            <a href="{{ route('text', ['id'=> $file->id, 'currentFolder' => $currentFolder]) }}" class="btn btn-primary">Read</a>
           </div>
         </div>
       </div>

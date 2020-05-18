@@ -10,6 +10,7 @@ use App\Folder;
 use andreskrey\Readability\Readability;
 use andreskrey\Readability\Configuration;
 use andreskrey\Readability\ParseException;
+use KubAT\PhpSimple\HtmlDomParser;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -67,12 +68,17 @@ class DeskController extends Controller
       $newFile = File::create($file);
       $newFile->user_id = $userId;
       $newFile->parent_id = $currentFolderId;
+
       $url = request()->url;
-      $text = $this->getParsedHtmlAsString($url);
+      $text = $this->getParsedHtml($url);
       $newFileName = $newFile->id. '_' . $newFile->user_id . '.html';
       Storage::disk('texts')->put($newFileName , $text);
       $textUrl = $newFileName;
       $newFile->text_url = $textUrl;
+
+      $abstract = $this->getAbstract($text);
+      $newFile->abstract = $abstract;
+
       $newFile->save();
     }
     return redirect(route('desk', ['currentFolder' => $currentFolderId]));
@@ -120,7 +126,7 @@ class DeskController extends Controller
     array_push($this->nestingLevels, $folderId);
   }
 
-  private function getParsedHtmlAsString ($url)
+  private function getParsedHtml ($url)
   {
     $configuration = new Configuration([
       'SummonCthulhu' => true
@@ -133,8 +139,19 @@ class DeskController extends Controller
     } catch (ParseException $e) {
       echo sprintf('Error processing text: %s', $e->getMessage());
     }
-
     $text = $readability->getHTMLAsString();
     return $text;
+  }
+
+  private function getAbstract($text) 
+  {
+    $prepParsing = HTMLDomParser::str_get_html($text);
+    $contentNodes = $prepParsing->find('p');
+    $content = array_shift($contentNodes);
+    $contentStripped = strip_tags($content->innertext);
+    $contentSplits = str_split($contentStripped, 255);
+    $abstract = array_shift($contentSplits);
+
+    return $abstract;
   }
 }
