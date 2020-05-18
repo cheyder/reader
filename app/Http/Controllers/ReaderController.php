@@ -15,63 +15,35 @@ class ReaderController extends Controller
 
   public function text ()
   {
-    $url = request()->url;
-    $fileUrl = File::where('url', $url)->first()->text_url;
-    $html = Storage::disk('texts')->get($fileUrl);
-    session()->put('html', $html);
-
-    session()->forget('url');
-    session()->put('url', $url);
+    $textId = request()->id;
+    $html = $this->getHtmlFromDb($textId);
     
     $nestingLevels = session()->get('nestingLevels');
-
-    $id = request()->id;
     
     return view('read/text', [
       'text' => $html,
       'nestingLevels' => $nestingLevels,
-      'id' => $id
+      'id' => $textId
     ]);
   }
 
   public function contents ()
   {
-    $html = HTMLDomParser::str_get_html(session()->get('html'));
-    $url = session()->get('url');
-    $headers = $html->find('h1, h2, h3');
-    //try again with dom-parser?!
-    
+    $textId = request()->id;
+    $html = $this->getHtmlFromDb($textId);
+    $prepParsing = HTMLDomParser::str_get_html($html);
+    $headers = $prepParsing->find('h1, h2, h3');
 
     return view('read/contents', [
-      'url' => $url,
+      'id' => $textId,
       'headers' => $headers
     ]);
   }
-  public function parkingDOMDocument () {
-    $dom = new DOMDocument();
-    @$dom->loadHTML($html);
-    $h1 = $dom->getElementsByTagName('h1');
-    $h2s = $dom->getElementsByTagName('h2');
-    
-  }
-  public function arrayHwithIds () {
-  $length = $h1->item($i)->attributes->length;
-  for ($i = 0; $i < $length; ++$i) {
-    if ($h1->attributes->item($i)->name == 'id') {
-      $id = $h1->attributes->item($i)->nodeValue;
-    }
-  }
-  }
 
-  public function arrayHeaders () {
-  $headings = [];
-  for ($i = 0; $i < $h2s->length; $i++) {
-    foreach ($h2s->item($i)->childNodes as $childNode) {
-      if ($childNode->nodeName == 'h*') {
-        array_push($headings, $childNode);
-      }
-    }
-  }
+  private function getHtmlFromDb ($textId) {
+    $fileUrl = File::where('id', $textId)->first()->text_url;
+    $html = Storage::disk('texts')->get($fileUrl);
+    return $html;
   }
 
 }
