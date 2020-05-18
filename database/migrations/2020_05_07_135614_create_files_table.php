@@ -16,9 +16,10 @@ class CreateFilesTable extends Migration
       Schema::create('files', function (Blueprint $table) {
         $table->id();
         $table->foreignId('user_id')->nullable();
+        $table->foreignId('parent_id')->nullable();
         $table->string('title');
         $table->string('url')->default('');
-        $table->foreignId('parent_id')->nullable();
+        $table->string('text_url')->default('');
         $table->enum('position', ['1', '2', '3', '4', '5', '6']);
         $table->timestamps();
       });

@@ -10,7 +10,8 @@ class File extends Model
     'user_id',
     'title',
     'url',
-    'position'
+    'text_url',
+    'position',
   ];
   
   public function parent() {

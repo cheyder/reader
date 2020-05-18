@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Gate;
 use App\File;
 use App\Folder;
 
+use andreskrey\Readability\Readability;
+use andreskrey\Readability\Configuration;
+use andreskrey\Readability\ParseException;
+
+use Illuminate\Support\Facades\Storage;
+
 class DeskController extends Controller
 {
   /**
@@ -57,6 +63,12 @@ class DeskController extends Controller
       $newFile = File::create($file);
       $newFile->user_id = $userId;
       $newFile->parent_id = $currentFolderId;
+      $url = request()->url;
+      $text = $this->getParsedHtmlAsString($url);
+      $newFileName = $newFile->id. '_' . $newFile->user_id . '.html';
+      Storage::disk('texts')->put($newFileName , $text);
+      $textUrl = $newFileName;
+      $newFile->text_url = $textUrl;
       $newFile->save();
     }
     return redirect(route('desk', ['currentFolder' => $currentFolderId]));
@@ -112,4 +124,21 @@ class DeskController extends Controller
     }
   }
 
+  private function getParsedHtmlAsString ($url)
+  {
+    $configuration = new Configuration([
+      'SummonCthulhu' => true
+    ]);
+    $readability = new Readability($configuration);
+
+    $html = file_get_contents($url);
+    try {
+      $readability->parse($html);
+    } catch (ParseException $e) {
+      echo sprintf('Error processing text: %s', $e->getMessage());
+    }
+
+    $text = $readability->getHTMLAsString();
+    return $text;
+  }
 }

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use andreskrey\Readability\Readability;
-use andreskrey\Readability\Configuration;
-use andreskrey\Readability\ParseException;
 use DOMDocument;
 use KubAT\PhpSimple\HtmlDomParser;
+use Illuminate\Support\Facades\Storage;
+use App\File;
 
 
 class ReaderController extends Controller
@@ -16,32 +15,20 @@ class ReaderController extends Controller
 
   public function text ()
   {
-    $configuration = new Configuration([
-      'SummonCthulhu' => true
-    ]);
-    $readability = new Readability($configuration);
-    session()->forget('url');
     $url = request()->url;
+    $fileUrl = File::where('url', $url)->first()->text_url;
+    $html = Storage::disk('texts')->get($fileUrl);
+    session()->put('html', $html);
+
+    session()->forget('url');
     session()->put('url', $url);
-    $html = file_get_contents($url);
-
-    $testXSS = '<script>alert(\'hello\')</script><p>If you can only see this, script-tags have been removed.';
-
-    try {
-        $readability->parse($html);
-        $text = $readability;
-        $html = $text->getHTMLAsString();
-        session()->put('html', $html);
-    } catch (ParseException $e) {
-        echo sprintf('Error processing text: %s', $e->getMessage());
-    }
-
+    
     $nestingLevels = session()->get('nestingLevels');
 
     $id = request()->id;
     
     return view('read/text', [
-      'text' => $text,
+      'text' => $html,
       'nestingLevels' => $nestingLevels,
       'id' => $id
     ]);
