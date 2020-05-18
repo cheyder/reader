@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 class DeskController extends Controller
 {
+  private $nestingLevels = [];
+
   /**
    * Display a listing of the resource.
    *
@@ -27,9 +29,11 @@ class DeskController extends Controller
     if(Gate::allows('view-collection', $folder)) {
       $subfolders = $folder->subfolders()->get();
       $subfiles = $folder->files()->get();
+
       $this->calculateNestingLevels($currentFolder);
-      $nestingLevels = session()->get('nestingLevels');
+      $nestingLevels = $this->nestingLevels;
       $nestingDepth = count($nestingLevels);
+
       return view('desk/collection', [
         'folder' => $folder,
         'folders' => $subfolders,
@@ -105,23 +109,15 @@ class DeskController extends Controller
     ]);
   }
 
-  private function calculateNestingLevels ($currentFolder)
-  {
-    session()->forget('nestingLevels');
-    $nestingLevels = [];
-    session()->put('nestingLevels', $nestingLevels);
-    $this->addAllParents($currentFolder);
-  }
-
-  private function addAllParents ($currentFolderId) 
+  private function calculateNestingLevels ($currentFolderId)
   {
     $currentFolder = Folder::find($currentFolderId);
     $parentId = $currentFolder->parent_id;
     $folderId = $currentFolder->id;
-    session()->push('nestingLevels', $folderId);
     if ($parentId > 0) {
-      $this->addAllParents($parentId);
+      $this->calculateNestingLevels($parentId);
     }
+    array_push($this->nestingLevels, $folderId);
   }
 
   private function getParsedHtmlAsString ($url)
