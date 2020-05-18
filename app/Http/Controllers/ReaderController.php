@@ -15,15 +15,18 @@ class ReaderController extends Controller
 
   public function text ()
   {
+    $currentFolder = request()->currentFolder;
     $textId = request()->id;
     $html = $this->getHtmlFromDb($textId);
     
     $nestingLevels = session()->get('nestingLevels');
     
+    
     return view('read/text', [
       'text' => $html,
       'nestingLevels' => $nestingLevels,
-      'id' => $textId
+      'id' => $textId,
+      'currentFolder' => $currentFolder
     ]);
   }
 
