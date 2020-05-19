@@ -6,10 +6,10 @@
     <div class="col-md-9">
       <div class="jumbotron">
         <h1 class="display-4">a reader for reading</h1>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        <p class="lead">distraction free focusing on content</p>
         @auth
         <a class="btn btn-primary btn-lg" href="{{ route('desk', ['currentFolder' => $userDeskFolderId ])  }}" role="button">Reader</a>
-        <a class="btn btn-outline-primary btn-lg" href="{{ route('settings') }}" role="button">Settings</a>
+        <a class="btn btn-outline-primary btn-lg" href="{{ route('users.edit', auth()->user()) }}" role="button">Settings</a>
         @else
         <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Open yours</a>
         <a class="btn btn-primary btn-lg" href="{{ route('register') }}" role="button">Create a new</a>

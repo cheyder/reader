@@ -27,9 +27,7 @@ Route::get('/', function () {
     
 })->name('welcome');
 
-Route::get('/settings', function () {
-    return view('settings');
-})->name('settings');
+Route::resources(['users' => 'UserController']);
 
 Route::get('/desk/{currentFolder}', 'DeskController@collection')->name('desk');
 Route::get('/desk/contents', 'DeskController@contents')->name('desk.contents');
