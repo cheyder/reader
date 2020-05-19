@@ -15,8 +15,8 @@ class ReaderController extends Controller
 
   public function text ()
   {
-    $currentFolder = request()->currentFolder;
     $textId = request()->id;
+    $currentFolder = File::find($textId)->parent_id;
     $html = $this->getHtmlFromDb($textId);
     
     $nestingLevels = session()->get('nestingLevels');
