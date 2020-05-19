@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Folder extends Model
 {
-  protected $fillable = ['title', 'user_id'];
+  protected $fillable = ['title', 'user_id', 'parent_id'];
   
   public function subfolders(){
       return $this->hasMany('App\Folder', 'parent_id');

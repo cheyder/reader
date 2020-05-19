@@ -23,8 +23,6 @@
             <div class="dropleft">
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Select</a>
-                <a class="dropdown-item" href="#">Insert</a>
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementId' => $folder->id,
                   'elementType' => 'folder'
@@ -61,7 +59,6 @@
             <div class="dropleft">
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Select</a>
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementType' => 'file',
                   'elementId' => $file->id
@@ -142,4 +139,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  
+  <script>
+    function toggleSelect (element) {
+      
+    }
+  </script>
   @endsection
