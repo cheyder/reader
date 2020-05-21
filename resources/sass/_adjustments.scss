@@ -1,0 +1,76 @@
+
+.bi {
+  height: 36px;
+}
+
+.breadcrumb {
+  padding: 0.1rem 0.15rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+
+.breadcrumb-item {
+  img {
+    height: 24px;
+  }
+}
+
+.card {
+  height: 80vh;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 12%;
+  color: hsl(0, 0, 25);
+}
+
+.carousel-control-prev:hover,
+.carousel-control-prev:focus,
+.carousel-control-next:hover,
+.carousel-control-next:focus {
+  color: hsl(0, 0, 15);
+}
+
+.dropdown-toggle{
+  height: 36px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: none;
+}
+
+/*start read.index*/
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+/*end read.index*/
+
+.navbar {
+  .container {
+    flex-wrap: nowrap;
+    height: 56px;
+  }
+}

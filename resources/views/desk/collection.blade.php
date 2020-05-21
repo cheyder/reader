@@ -21,7 +21,7 @@
         <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
-              <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="dropdown-toggle float-right" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementId' => $folder->id,
@@ -57,7 +57,7 @@
         <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
-              <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="dropdown-toggle float-right" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementType' => 'file',
