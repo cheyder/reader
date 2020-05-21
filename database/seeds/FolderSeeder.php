@@ -14,15 +14,7 @@ class FolderSeeder extends Seeder
   {
     DB::table('folders')->insert([
       'user_id' => 1,
-      'title' => 'Desk',
-      'parent_id' => NULL,
-      'position' => NULL,
-      'created_at' => now(),
-      'updated_at' => now()
-    ]);
-    DB::table('folders')->insert([
-      'user_id' => 1,
-      'title' => 'Beruf',
+      'title' => 'Coding',
       'parent_id' => 1,
       'position' => '1',
       'created_at' => now(),
@@ -30,7 +22,7 @@ class FolderSeeder extends Seeder
     ]);
     DB::table('folders')->insert([
       'user_id' => 1,
-      'title' => 'Hobby',
+      'title' => 'Literatur',
       'parent_id' => 1,
       'position' => '2',
       'created_at' => now(),
@@ -54,9 +46,41 @@ class FolderSeeder extends Seeder
     ]);
     DB::table('folders')->insert([
       'user_id' => 1,
-      'title' => 'Neues Projekt',
+      'title' => 'Laravel',
+      'parent_id' => 5,
+      'position' => '1',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'user_id' => 1,
+      'title' => 'Notate',
       'parent_id' => 3,
       'position' => '1',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'user_id' => 1,
+      'title' => 'Texte',
+      'parent_id' => 3,
+      'position' => '2',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'user_id' => 1,
+      'title' => 'Rezensionen',
+      'parent_id' => 3,
+      'position' => '3',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'user_id' => 1,
+      'title' => 'Diskurse',
+      'parent_id' => 3,
+      'position' => '4',
       'created_at' => now(),
       'updated_at' => now()
     ]);
@@ -65,6 +89,14 @@ class FolderSeeder extends Seeder
       'title' => 'Schnelle Küche',
       'parent_id' => 4,
       'position' => '2',
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+    DB::table('folders')->insert([
+      'user_id' => 1,
+      'title' => 'Teige',
+      'parent_id' => 4,
+      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
     ]);

@@ -73,7 +73,7 @@ class RegisterController extends Controller
       \App\Folder::create([
         'title' => 'Desk of '.$user->name,
         'user_id' => $user->id,
-        'parent_id' => 0,
+        'parent_id' => NULL,
         'position' => NULL
       ]);
       
