@@ -63,8 +63,8 @@ class DeskController extends Controller
     } 
     elseif (request(['type'])['type'] == 'file'){
       $newFile = $this->validateFile();
+      $newFile['user_id'] = $userId;
       $newFile = File::create($newFile);
-      $newFile->user_id = $userId;
       $newFile->parent_id = (int) $currentFolderId;
 
       $url = request()->url;

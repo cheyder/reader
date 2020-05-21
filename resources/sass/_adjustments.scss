@@ -25,13 +25,6 @@
   color: hsl(0, 0, 25);
 }
 
-.carousel-control-prev:hover,
-.carousel-control-prev:focus,
-.carousel-control-next:hover,
-.carousel-control-next:focus {
-  color: hsl(0, 0, 15);
-}
-
 .dropdown-toggle{
   height: 36px;
 }
@@ -68,9 +61,10 @@
 }
 /*end read.index*/
 
-main {
+.card-body {
   img {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 }
 

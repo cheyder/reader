@@ -10906,13 +10906,6 @@ a.text-dark:focus {
   color: #404040;
 }
 
-.carousel-control-prev:hover,
-.carousel-control-prev:focus,
-.carousel-control-next:hover,
-.carousel-control-next:focus {
-  color: #262626;
-}
-
 .dropdown-toggle {
   height: 36px;
 }
@@ -10951,8 +10944,9 @@ a.text-dark:focus {
 
 /*end read.index*/
 
-main img {
-  width: 100%;
+.card-body img {
+  max-width: 100%;
+  height: auto;
 }
 
 .navbar .container {
