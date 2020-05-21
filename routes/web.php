@@ -27,7 +27,7 @@ Route::get('/', function () {
     
 })->name('welcome');
 
-Route::resources(['users' => 'UserController']);
+Route::resource('users', 'UserController');
 
 Route::get('/desk/{currentFolder}', 'DeskController@collection')->name('desk');
 Route::get('/desk/contents', 'DeskController@contents')->name('desk.contents');

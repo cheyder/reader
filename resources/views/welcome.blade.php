@@ -15,6 +15,11 @@
         <a class="btn btn-primary btn-lg" href="{{ route('register') }}" role="button">Create a new</a>
         @endauth
       </div>
+      @if(request()->session()->has('status'))
+      <div class="alert alert-light" role="alert">
+        {{request()->session()->get('status') }}
+      </div>
+      @endif
     </div>
   </div>
 </div>

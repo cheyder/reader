@@ -77,14 +77,15 @@ class UserController extends Controller
         if ($editUser['password'] === request()->confirmPass) {
           $editUser['password'] = Hash::make($editUser['password']);
           $user->update(['password' => $editUser['password']]);
+          session()->flash('status', 'Password updated!');
         } else {
-        dd('Something went wrong.');}
+        session()->flash('status', 'Sorry, something went wrong with updating your password!');}
       } elseif (Hash::check(request()->password, $user->password)){
         $editUser = $this->validateEmail();
-        $user->email = $editUser['email'];
-        $user->save();
-      } else {
-        dd('Something went wrong.');}
+        $user->update(['email' => $editUser['email']]);
+        session()->flash('status', 'Email updated!');
+        } else {
+      session()->flash('status', 'Sorry, something went wrong with updating your email!');}
 
       return redirect(route('welcome'));
     }

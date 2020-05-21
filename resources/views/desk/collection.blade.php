@@ -139,10 +139,4 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  
-  <script>
-    function toggleSelect (element) {
-      
-    }
-  </script>
   @endsection
