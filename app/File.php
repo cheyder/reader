@@ -12,7 +12,8 @@ class File extends Model
     'url',
     'text_url',
     'position',
-    'abstract'
+    'abstract',
+    'headers'
   ];
   
   public function parent() {

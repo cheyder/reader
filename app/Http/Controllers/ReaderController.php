@@ -17,7 +17,7 @@ class ReaderController extends Controller
   {
     $textId = request()->id;
     $currentFolder = File::find($textId)->parent_id;
-    $html = $this->getHtmlFromDb($textId);
+    $html = $this->getHtml($textId);
     
     $nestingLevels = session()->get('nestingLevels');
     
@@ -33,9 +33,8 @@ class ReaderController extends Controller
   public function contents ()
   {
     $textId = request()->id;
-    $html = $this->getHtmlFromDb($textId);
-    $prepParsing = HTMLDomParser::str_get_html($html);
-    $headers = $prepParsing->find('h1, h2, h3');
+    $headers = $this->getHeaders($textId);
+    
 
     return view('read/contents', [
       'id' => $textId,
@@ -43,10 +42,16 @@ class ReaderController extends Controller
     ]);
   }
 
-  private function getHtmlFromDb ($textId) {
+  private function getHtml ($textId) {
     $fileUrl = File::where('id', $textId)->first()->text_url;
     $html = Storage::disk('texts')->get($fileUrl);
     return $html;
+  }
+
+  private function getHeaders ($textId) {
+    $headersUrl = File::where('id', $textId)->first()->headers_url;
+    $headers = Storage::disk('texts')->get($headersUrl);
+    return json_decode($headers, true);
   }
 
 }

@@ -64,20 +64,28 @@ class DeskController extends Controller
       $newFolder->save();
     } 
     elseif (request(['type'])['type'] == 'file'){
-      $file = $this->validateFile();
-      $newFile = File::create($file);
+      $newFile = $this->validateFile();
+      $newFile = File::create($newFile);
       $newFile->user_id = $userId;
-      $newFile->parent_id = $currentFolderId;
+      $newFile->parent_id = (int) $currentFolderId;
 
       $url = request()->url;
       $text = $this->getParsedHtml($url);
-      $newFileName = $newFile->id. '_' . $newFile->user_id . '.html';
-      Storage::disk('texts')->put($newFileName , $text);
+      $newFileName = $newFile->id . '_' . $newFile->user_id . '.html';
+      Storage::disk('texts')->put($newFileName, $text);
       $textUrl = $newFileName;
       $newFile->text_url = $textUrl;
+      
+
+      $headers = $this->getHeaderArray($text);
+      $newHeadersFileName = $newFile->id . '_' . $newFile->user_id . '_headers.json';
+      Storage::disk('texts')->put($newHeadersFileName, $headers);
+      $newFile->headers_url = $newHeadersFileName;
 
       $abstract = $this->getAbstract($text);
       $newFile->abstract = $abstract;
+
+      
 
       $newFile->save();
     }
@@ -153,5 +161,42 @@ class DeskController extends Controller
     $abstract = array_shift($contentSplits);
 
     return $abstract;
+  }
+
+  private function getHeaderArray ($text) 
+  {
+    $prepParsing = HTMLDomParser::str_get_html($text);
+    $parsedHeaders = $prepParsing->find('h1, h2, h3');
+    $headers = [];
+    foreach ($parsedHeaders as $header) {
+      if ($header->tag === "h1") {
+        array_push($headers, ['type' => 'h1', 'id' => $header->id, 'header' => $header->innertext]);
+      } 
+      if ($header->tag === "h2") {
+        if (count($header->children) > 0) {
+          foreach ($header->children as $child) {
+            similar_text($child->id, $child->innertext, $percent);
+            if ($percent > 80) {
+              array_push($headers, ['type' => 'h2', 'id' => $child->id, 'header' => $child->innertext]);
+            }
+          }
+        } else {
+          array_push($headers, ['type' => 'h2', 'id' => $header->id, 'header' => $header->innertext]);
+        }
+      } 
+      if ($header->tag === "h3") {
+        if (count($header->children) > 0) {
+          foreach ($header->children as $child) {
+            similar_text($child->id, $child->innertext, $percent);
+            if ($percent > 80) {
+              array_push($headers, ['type' => 'h3', 'id' => $child->id, 'header' => $child->innertext]);
+            }
+          }
+        } else {
+          array_push($headers, ['type' => 'h3', 'id' => $header->id, 'header' => $header->innertext]);
+        }
+      } 
+    }
+    return json_encode($headers);
   }
 }
