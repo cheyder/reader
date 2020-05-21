@@ -33,15 +33,13 @@ class DeskController extends Controller
 
       $this->calculateNestingLevels($currentFolder);
       $nestingLevels = $this->nestingLevels;
-      $nestingDepth = count($nestingLevels);
 
       return view('desk/collection', [
         'folder' => $folder,
         'folders' => $subfolders,
         'files' => $subfiles,
         'currentFolder' => $currentFolder,
-        'nestingLevels' => $nestingLevels,
-        'nestingDepth' => $nestingDepth
+        'nestingLevels' => $nestingLevels
       ]);
     } return back();
    
