@@ -2,85 +2,98 @@
 
 @section('content')
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-11">
-    <form action="">
+  <div class="row justify-content-center">
+    <div class="col-11">
+      <form method="POST" action="{{ route('users.update', $user) }}">
+        @csrf
+        @method('PUT')
         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">E-Mail</span>
-            </div>
+          <div class="input-group-prepend">
+            <span class="input-group-text">E-Mail</span>
+          </div>
 
-            <input id="email-input" type="text" class="form-control" value="{{ Auth::user()->email }}" aria-label="Email" readonly>
-            
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" onclick="toggleEmailEdit()" type="button" id="edit-email">Edit</button>
-            </div>
+          <input id="inputEmail" name="email" type="text" class="form-control" value="{{ $user->email }}" aria-label="Email" readonly>
+
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" onclick="toggleEmailEdit()" type="button" id="edit-email">Edit</button>
+          </div>
         </div>
 
         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Password</span>
-            </div>
+          <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+          </div>
 
-            <input id="inputPassword" type="password" class="form-control" aria-label="Password" readonly>
+          <input id="inputPassword" name="password" type="password" class="form-control" aria-label="Password" readonly>
 
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="edit-password" onclick="togglePasswordEdit()">Edit</button>
-            </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="edit-password" onclick="togglePasswordEdit()">Edit</button>
+          </div>
         </div>
 
         <div id="confirmPasswordGroup" class="input-group mb-3 d-none">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Confirm</span>
-            </div>
-            <input type="password" class="form-control" placeholder="enter it again" aria-label="Confirm Password">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Confirm</span>
+          </div>
+          <input id="confirmPassword" name="confirmPass" type="password" class="form-control" placeholder="enter it again" aria-label="Confirm Password">
         </div>
 
-        
+
         <button class="btn btn-primary" type="submit">Submit</button>
         <a class="btn btn-secondary" href=" {{ route('welcome') }}">Cancel</a>
-        <button
-            class="btn btn-outline-primary" 
-            href="{{ route('logout') }}"
-            onclick="event.preventDefault();
+        <button class="btn btn-outline-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
+          {{ __('Logout') }}
         </button>
-        <button class="btn btn-outline-danger" type="submit">Delete</button>
-    </form>
+        <button class="btn btn-outline-danger" onclick="event.preventDefault();
+                    document.getElementById('delete-form').submit();">Delete</button>
+      </form>
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-</div>
-</div>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+      </form>
 
-<div class="row justify-content-around">
-</div>
+      <form id="delete-form" action="{{ route('users.destroy', $user) }}" method="POST" class="d-none">
+        @csrf
+        @method('DELETE')
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-around">
+  </div>
 </div>
 
 <script>
-    function toggleEmailEdit() {
-        let elem = document.getElementById('email-input');
-        if(elem.hasAttribute('readonly')) {
-            elem.removeAttribute('readonly')
-        } else {
-            elem.setAttribute('readonly', '')
-        }
+  function toggleEmailEdit() {
+    let elem = document.getElementById('inputEmail');
+    let confirm = document.getElementById('inputPassword');
+    if (elem.hasAttribute('readonly')) {
+      elem.removeAttribute('readonly')
+    } else {
+      elem.setAttribute('readonly', '')
     }
+    if (confirm.hasAttribute('readonly')) {
+      confirm.removeAttribute('readonly');
+      confirm.setAttribute('placeholder', 'confirm new mail with your password');
+    } else {
+      confirm.setAttribute('readonly', '');
+      confirm.removeAttribute('placeholder');
+    }
+  }
 
-    function togglePasswordEdit() {
-        let pass = document.getElementById('inputPassword');
-        let conf = document.getElementById('confirmPasswordGroup');
-        if(pass.hasAttribute('readonly')) {
-            pass.removeAttribute('readonly');
-            pass.setAttribute('placeholder', 'insert new password');
-            conf.setAttribute('class', 'input-group mb-3 ')
-        } else {
-            pass.setAttribute('readonly', '');
-            pass.removeAttribute('placeholder');
-            conf.setAttribute('class', 'd-none');
-        }
+  function togglePasswordEdit() {
+    let pass = document.getElementById('inputPassword');
+    let conf = document.getElementById('confirmPasswordGroup');
+    if (pass.hasAttribute('readonly')) {
+      pass.removeAttribute('readonly');
+      pass.setAttribute('placeholder', 'insert new password');
+      conf.setAttribute('class', 'input-group mb-3 ')
+    } else {
+      pass.setAttribute('readonly', '');
+      pass.removeAttribute('placeholder');
+      conf.setAttribute('class', 'd-none');
     }
+  }
 </script>
 @endsection

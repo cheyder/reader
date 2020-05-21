@@ -7,8 +7,17 @@ use Illuminate\Support\Facades\Gate;
 use App\File;
 use App\Folder;
 
+use andreskrey\Readability\Readability;
+use andreskrey\Readability\Configuration;
+use andreskrey\Readability\ParseException;
+use KubAT\PhpSimple\HtmlDomParser;
+
+use Illuminate\Support\Facades\Storage;
+
 class DeskController extends Controller
 {
+  private $nestingLevels = [];
+
   /**
    * Display a listing of the resource.
    *
@@ -21,16 +30,16 @@ class DeskController extends Controller
     if(Gate::allows('view-collection', $folder)) {
       $subfolders = $folder->subfolders()->get();
       $subfiles = $folder->files()->get();
+
       $this->calculateNestingLevels($currentFolder);
-      $nestingLevels = session()->get('nestingLevels');
-      $nestingDepth = count($nestingLevels);
+      $nestingLevels = $this->nestingLevels;
+
       return view('desk/collection', [
         'folder' => $folder,
         'folders' => $subfolders,
         'files' => $subfiles,
         'currentFolder' => $currentFolder,
-        'nestingLevels' => $nestingLevels,
-        'nestingDepth' => $nestingDepth
+        'nestingLevels' => $nestingLevels
       ]);
     } return back();
    
@@ -53,10 +62,29 @@ class DeskController extends Controller
       $newFolder->save();
     } 
     elseif (request(['type'])['type'] == 'file'){
-      $file = $this->validateFile();
-      $newFile = File::create($file);
+      $newFile = $this->validateFile();
+      $newFile = File::create($newFile);
       $newFile->user_id = $userId;
-      $newFile->parent_id = $currentFolderId;
+      $newFile->parent_id = (int) $currentFolderId;
+
+      $url = request()->url;
+      $text = $this->getParsedHtml($url);
+      $newFileName = $newFile->id . '_' . $newFile->user_id . '.html';
+      Storage::disk('texts')->put($newFileName, $text);
+      $textUrl = $newFileName;
+      $newFile->text_url = $textUrl;
+      
+
+      $headers = $this->getHeaderArray($text);
+      $newHeadersFileName = $newFile->id . '_' . $newFile->user_id . '_headers.json';
+      Storage::disk('texts')->put($newHeadersFileName, $headers);
+      $newFile->headers_url = $newHeadersFileName;
+
+      $abstract = $this->getAbstract($text);
+      $newFile->abstract = $abstract;
+
+      
+
       $newFile->save();
     }
     return redirect(route('desk', ['currentFolder' => $currentFolderId]));
@@ -93,23 +121,80 @@ class DeskController extends Controller
     ]);
   }
 
-  private function calculateNestingLevels ($currentFolder)
-  {
-    session()->forget('nestingLevels');
-    $nestingLevels = [];
-    session()->put('nestingLevels', $nestingLevels);
-    $this->addAllParents($currentFolder);
-  }
-
-  private function addAllParents ($currentFolderId) 
+  private function calculateNestingLevels ($currentFolderId)
   {
     $currentFolder = Folder::find($currentFolderId);
     $parentId = $currentFolder->parent_id;
     $folderId = $currentFolder->id;
-    session()->push('nestingLevels', $folderId);
     if ($parentId > 0) {
-      $this->addAllParents($parentId);
+      $this->calculateNestingLevels($parentId);
     }
+    array_push($this->nestingLevels, $folderId);
   }
 
+  private function getParsedHtml ($url)
+  {
+    $configuration = new Configuration([
+      'SummonCthulhu' => true
+    ]);
+    $readability = new Readability($configuration);
+
+    $html = file_get_contents($url);
+    try {
+      $readability->parse($html);
+    } catch (ParseException $e) {
+      echo sprintf('Error processing text: %s', $e->getMessage());
+    }
+    $text = $readability->getHTMLAsString();
+    return $text;
+  }
+
+  private function getAbstract($text) 
+  {
+    $prepParsing = HTMLDomParser::str_get_html($text);
+    $contentNodes = $prepParsing->find('p');
+    $content = array_shift($contentNodes);
+    $contentStripped = strip_tags($content->innertext);
+    $contentSplits = str_split($contentStripped, 255);
+    $abstract = array_shift($contentSplits);
+
+    return $abstract;
+  }
+
+  private function getHeaderArray ($text) 
+  {
+    $prepParsing = HTMLDomParser::str_get_html($text);
+    $parsedHeaders = $prepParsing->find('h1, h2, h3');
+    $headers = [];
+    foreach ($parsedHeaders as $header) {
+      if ($header->tag === "h1") {
+        array_push($headers, ['type' => 'h1', 'id' => $header->id, 'header' => $header->innertext]);
+      } 
+      if ($header->tag === "h2") {
+        if (count($header->children) > 0) {
+          foreach ($header->children as $child) {
+            similar_text($child->id, $child->innertext, $percent);
+            if ($percent > 80) {
+              array_push($headers, ['type' => 'h2', 'id' => $child->id, 'header' => $child->innertext]);
+            }
+          }
+        } else {
+          array_push($headers, ['type' => 'h2', 'id' => $header->id, 'header' => $header->innertext]);
+        }
+      } 
+      if ($header->tag === "h3") {
+        if (count($header->children) > 0) {
+          foreach ($header->children as $child) {
+            similar_text($child->id, $child->innertext, $percent);
+            if ($percent > 80) {
+              array_push($headers, ['type' => 'h3', 'id' => $child->id, 'header' => $child->innertext]);
+            }
+          }
+        } else {
+          array_push($headers, ['type' => 'h3', 'id' => $header->id, 'header' => $header->innertext]);
+        }
+      } 
+    }
+    return json_encode($headers);
+  }
 }

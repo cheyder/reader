@@ -23,8 +23,6 @@
             <div class="dropleft">
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Select</a>
-                <a class="dropdown-item" href="#">Insert</a>
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementId' => $folder->id,
                   'elementType' => 'folder'
@@ -61,7 +59,6 @@
             <div class="dropleft">
               <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Select</a>
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementType' => 'file',
                   'elementId' => $file->id
@@ -75,10 +72,10 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ $file->title }}</h5>
-            <p class="card-text">First 100 words: Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quia sunt consectetur, voluptates atque totam a eum magni non beatae officia eius explicabo recusandae. Saepe fuga modi consequatur repellendus culpa!</p>
+            <p class="card-text">{{ $file->abstract }}</p>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="{{ route('text', ['url'=> $file->url]) }}" class="btn btn-primary">Read</a>
+            <a href="{{ route('text', ['id'=> $file->id, 'currentFolder' => $currentFolder]) }}" class="btn btn-primary">Read</a>
           </div>
         </div>
       </div>
