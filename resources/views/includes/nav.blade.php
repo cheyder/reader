@@ -39,72 +39,34 @@
     </a>
 
     <ol class="breadcrumb">
-      @switch($nestingDepth)
-      @case(1)
+      @if(isset($nestingLevels['0']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => 1]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['0']]) }}">
           <img src="{{ asset('icons/archive-cabinet.png') }}" style="height:24px" alt="">
         </a>
       </li>
-      @break
-      @case(2)
+      @endif
+      @if(isset($nestingLevels['1']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels)]) }}">
-          <img src="{{ asset('icons/archive-cabinet.png') }}" style="height:24px" alt="">
-        </a>
-      </li>
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['1'] ]) }}">
           <img src="{{ asset('icons/archive-box.png') }}" style="height:24px" alt="">
         </a>
       </li>
-      @break
-      @case(3)
+      @endif
+      @if(isset($nestingLevels['2']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
-          <img src="{{ asset('icons/archive-cabinet.png') }}" style="height:24px" alt="">
-        </a>
-      </li>
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
-          <img src="{{ asset('icons/archive-box.png') }}" style="height:24px" alt="">
-        </a>
-      </li>
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['2'] ]) }}">
           <img src="{{ asset('icons/folder.png') }}" style="height:24px" alt="">
         </a>
       </li>
-      @break
-      @case(4)
+      @endif
+      @if(isset($nestingLevels['3']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
-          <img src="{{ asset('icons/archive-cabinet.png') }}" style="height:24px" alt="">
-        </a>
-      </li>
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
-          <img src="{{ asset('icons/archive-box.png') }}" style="height:24px" alt="">
-        </a>
-      </li>
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
-          <img src="{{ asset('icons/folder.png') }}" style="height:24px" alt="">
-        </a>
-      </li>
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => array_shift($nestingLevels) ]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['3'] ]) }}">
           <img src="{{ asset('icons/document.png') }}" style="height:24px" alt="">
         </a>
       </li>
-      @break
-      @default
-      <li class="breadcrumb-item">
-        <a class="btn p-1" href="">
-
-        </a>
-      </li>
-      @endswitch
+      @endif
     </ol>
   </div>
 </nav>

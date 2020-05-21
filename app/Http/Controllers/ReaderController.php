@@ -11,8 +11,6 @@ use App\File;
 
 class ReaderController extends Controller
 {
-  
-
   public function text ()
   {
     $textId = request()->id;
@@ -20,7 +18,6 @@ class ReaderController extends Controller
     $html = $this->getHtml($textId);
     
     $nestingLevels = session()->get('nestingLevels');
-    
     
     return view('read/text', [
       'text' => $html,
@@ -35,7 +32,6 @@ class ReaderController extends Controller
     $textId = request()->id;
     $headers = $this->getHeaders($textId);
     
-
     return view('read/contents', [
       'id' => $textId,
       'headers' => $headers
