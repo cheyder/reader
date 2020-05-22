@@ -42,7 +42,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-
 }
 
 html {
@@ -66,7 +65,6 @@ section {
 }
 
 body {
-  height: 100vh;
   margin: 0;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
@@ -122,7 +120,7 @@ address {
 ol,
 ul,
 dl {
-  /*margin-top: 0;*/
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -4961,7 +4959,6 @@ input[type=button].btn-block {
 .card {
   position: relative;
   display: flex;
-  height: 70vh;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
@@ -5207,7 +5204,7 @@ input[type=button].btn-block {
   display: inline-block;
   padding-right: 0.5rem;
   color: #6c757d;
-  content: none;
+  content: "/";
 }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
@@ -5725,33 +5722,6 @@ a.badge-dark.focus {
   padding-left: 0;
   margin-bottom: 0;
 }
-/*start read.index extras*/
-.list-group.list-group-root {
-  padding: 0;
-  overflow: hidden;
-}
-
-.list-group.list-group-root .list-group {
-  margin-bottom: 0;
-}
-
-.list-group.list-group-root .list-group-item {
-  border-radius: 0;
-  border-width: 1px 0 0 0;
-}
-
-.list-group.list-group-root > .list-group-item:first-child {
-  border-top-width: 0;
-}
-
-.list-group.list-group-root > .list-group > .list-group-item {
-  padding-left: 30px;
-}
-
-.list-group.list-group-root > .list-group > .list-group > .list-group-item {
-  padding-left: 45px;
-}
-/*end*/
 
 .list-group-item-action {
   width: 100%;
@@ -6792,7 +6762,7 @@ a.close.disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12%;
+  width: 15%;
   color: #fff;
   text-align: center;
   opacity: 0.5;
@@ -6810,7 +6780,7 @@ a.close.disabled {
 .carousel-control-prev:focus,
 .carousel-control-next:hover,
 .carousel-control-next:focus {
-  color: rgb(140, 140, 140);
+  color: #fff;
   text-decoration: none;
   outline: 0;
   opacity: 0.9;
@@ -10910,5 +10880,95 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+.bi {
+  height: 1rem;
+  width: 1rem;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+.breadcrumb {
+  padding: 0.1rem 0.15rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+
+.breadcrumb-item img {
+  height: 1.1rem;
+}
+
+.card {
+  height: 80vh;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5vw;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  border: 1px solid black;
+}
+
+.col-11 {
+  max-width: 80ch;
+}
+
+.container {
+  width: 90vw;
+}
+
+.dropdown-toggle {
+  height: 36px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: none;
+}
+
+/*start read.index*/
+
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+
+/*end read.index*/
+
+.card-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar .container {
+  flex-wrap: nowrap;
+  height: 3.5rem;
 }
 

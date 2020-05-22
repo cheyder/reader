@@ -18,7 +18,7 @@ class FileSeeder extends Seeder
         'title' => 'Honigbiene',
         'url'=> 'https://de.wikipedia.org/wiki/Westliche_Honigbiene',
         'parent_id' => 1,
-        'position' => '3',
+
         'created_at' => now(),
         'updated_at' => now()
       ]);
@@ -27,7 +27,7 @@ class FileSeeder extends Seeder
         'title' => 'Gespräch',
         'url' => 'https://de.wikipedia.org/wiki/Gespräch',
         'parent_id' => 1,
-        'position' => '3',
+
         'created_at' => now(),
         'updated_at' => now()
       ]);
@@ -36,7 +36,6 @@ class FileSeeder extends Seeder
       'title' => 'Holochain Basics',
       'url'=> 'https://developer.holochain.org/docs/concepts/1_the_basics/',
       'parent_id' => 2,
-      'position' => '2',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -45,7 +44,6 @@ class FileSeeder extends Seeder
       'title' => 'Testing',
       'url' => 'https://laravel.com/docs/7.x/testing',
       'parent_id' => 6,
-      'position' => '1',
       'created_at' => now(),
       'updated_at' => now()
     ]);
@@ -54,7 +52,6 @@ class FileSeeder extends Seeder
       'title' => 'Events',
       'url' => 'https://laravel.com/docs/7.x/events',
       'parent_id' => 6,
-      'position' => '2',
       'created_at' => now(),
       'updated_at' => now()
     ]);
@@ -63,7 +60,6 @@ class FileSeeder extends Seeder
       'title' => 'Cache',
       'url' => 'https://laravel.com/docs/7.x/cache',
       'parent_id' => 6,
-      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
     ]);
@@ -72,7 +68,6 @@ class FileSeeder extends Seeder
       'title' => 'Der Platz',
       'url' => 'https://www.perlentaucher.de/buch/annie-ernaux/der-platz.html',
       'parent_id' => 9,
-      'position' => '1',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -81,7 +76,6 @@ class FileSeeder extends Seeder
       'title' => 'Galettes bretonnes',
       'url' => 'https://zartbitter-und-zuckersuess.de/galettes/',
       'parent_id' => 12,
-      'position' => '2',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -90,7 +84,6 @@ class FileSeeder extends Seeder
       'title' => 'Roggenvollkornbrot',
       'url' => 'https://www.ohnemist.de/bauernbrot-mit-sauerteig-roggenvollkornmehl',
       'parent_id' => 12,
-      'position' => '1',
       'created_at' => now(),
       'updated_at' => now()
       ]);
@@ -99,7 +92,6 @@ class FileSeeder extends Seeder
       'title' => 'Elsässer Flammkuchen',
       'url' => 'https://www.lecker.de/elsaesser-flammkuchen-63032.html',
       'parent_id' => 12,
-      'position' => '3',
       'created_at' => now(),
       'updated_at' => now()
       ]);

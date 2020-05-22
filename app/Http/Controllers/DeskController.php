@@ -63,8 +63,8 @@ class DeskController extends Controller
     } 
     elseif (request(['type'])['type'] == 'file'){
       $newFile = $this->validateFile();
+      $newFile['user_id'] = $userId;
       $newFile = File::create($newFile);
-      $newFile->user_id = $userId;
       $newFile->parent_id = (int) $currentFolderId;
 
       $url = request()->url;
@@ -107,8 +107,7 @@ class DeskController extends Controller
   private function validateFolder ()
   {
     return request()->validate([
-      'title' => 'required|string|max:32',
-      'position' => 'required|integer|between:1,6'
+      'title' => 'required|string|max:32'
     ]);
   }
 
@@ -116,7 +115,6 @@ class DeskController extends Controller
   {
     return request()->validate([
       'title' => 'required|string|max:32',
-      'position' => 'required|integer|between:1,6',
       'url' => 'required|url'
     ]);
   }
@@ -145,8 +143,13 @@ class DeskController extends Controller
     } catch (ParseException $e) {
       echo sprintf('Error processing text: %s', $e->getMessage());
     }
-    $text = $readability->getHTMLAsString();
+    $text = $this->getHTMLAsString($readability);
     return $text;
+  }
+
+  private function getHTMLAsString ($readability)
+  {
+    return sprintf('<h1>%s</h1>%s', $readability->getTitle(), $readability->getContent());
   }
 
   private function getAbstract($text) 

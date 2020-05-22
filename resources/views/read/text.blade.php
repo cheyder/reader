@@ -8,8 +8,8 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-10">
-      <div class="card overflow-auto" style="height: 80vh;">
+    <div class="col-11">
+      <div class="card overflow-auto">
         <div class="card-body">{!! $text !!}</div>
       </div>
     </div>

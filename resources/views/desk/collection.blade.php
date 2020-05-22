@@ -6,8 +6,9 @@
 
 @section('content')
 <div class="container">
-  <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false">
-    <div class="carousel-inner col-10">
+  <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false" data-touch="true" data-keyboard="true">
+    <div class="carousel-inner col-11">
+
       <div class="carousel-item active">
         <div class="card">
           <div class="card-body">
@@ -21,7 +22,7 @@
         <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
-              <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="dropdown-toggle float-right" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementId' => $folder->id,
@@ -34,7 +35,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body overflow-auto">
             <h5 class="card-title">{{ $folder->title }}</h5>
             <div class="list-group">
               @foreach($folder->subfolders as $subfolder)
@@ -57,7 +58,7 @@
         <div class="card">
           <div class="card-header py-0">
             <div class="dropleft">
-              <img class="dropdown-toggle float-right" style="height: 36px" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="dropdown-toggle float-right" src="{{ asset('icons/echo-dot.png') }}" alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <form method="POST" action="{{ route('desk.delete', [
                   'elementType' => 'file',
@@ -70,7 +71,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body overflow-auto">
             <h5 class="card-title">{{ $file->title }}</h5>
             <p class="card-text">{{ $file->abstract }}</p>
           </div>
@@ -85,31 +86,15 @@
         <form method="POST" action="{{ route('desk.store', ['currentFolderId' => $currentFolder]) }}">
           @csrf
           <div class="card">
-            <div class="card-body">
-              <p class="card-text">Get a new text or create a new folder for your collection.</p>
-
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputPosition">Position</label>
-                </div>
-                <select class="custom-select" id="inputPosition" name="position">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="4">Four</option>
-                  <option value="5">Five</option>
-                  <option value="6">Six</option>
-                </select>
-              </div>
+            <div class="card-body overflow-auto">
+              <p class="card-text">Get a new text or create a new folder for your collection:</p>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputType">Type</label>
                 </div>
                 <select class="custom-select" id="inputType" name="type">
-                  <option selected>Choose...</option>
+                  <option selected></option>
                   <option value="file">new Text</option>
                   <option value="folder">new Folder</option>
                 </select>
@@ -131,11 +116,15 @@
       </div>
     </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <svg class="bi bi-chevron-left" viewBox="0 0 16 16" fill="dimgrey" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z" clip-rule="evenodd" />
+      </svg>
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <svg class="bi bi-chevron-right" viewBox="0 0 16 16" fill="dimgrey" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd" />
+      </svg>
       <span class="sr-only">Next</span>
     </a>
   </div>

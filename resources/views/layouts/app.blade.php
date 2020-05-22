@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/helpers.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,7 +23,7 @@
 <body id="app">
     @yield('nav')
 
-    <main class="py-3">
+    <main class="py-2 my-auto">
         @yield('content')
     </main>
 

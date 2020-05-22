@@ -15,14 +15,13 @@ class CreateFilesTable extends Migration
     {
       Schema::create('files', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('user_id')->nullable();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable();
         $table->foreignId('parent_id')->nullable();
         $table->string('title');
         $table->string('url');
         $table->string('text_url')->default('');
         $table->string('abstract')->default('');
         $table->string('headers_url')->default('');
-        $table->enum('position', ['1', '2', '3', '4', '5', '6']);
         $table->timestamps();
       });
     }

@@ -11,7 +11,6 @@ class File extends Model
     'title',
     'url',
     'text_url',
-    'position',
     'abstract',
     'headers'
   ];

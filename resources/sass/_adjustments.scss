@@ -1,0 +1,90 @@
+.bi {
+  height: 1rem;
+  width: 1rem;
+}
+html, body {
+  height: 100vh;
+}
+.breadcrumb {
+  padding: 0.1rem 0.15rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+
+.breadcrumb-item {
+  img {
+    height: 1.1rem;
+  }
+}
+
+.card {
+  height: 80vh;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5vw;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  border: 1px solid black;
+}
+
+.col-11 {
+  max-width: 80ch;
+}
+
+.container {
+  width:90vw;
+}
+
+.dropdown-toggle{
+  height: 36px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: none;
+}
+
+/*start read.index*/
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+/*end read.index*/
+
+.card-body {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.navbar {
+  .container {
+    flex-wrap: nowrap;
+    height: 3.5rem;
+  }
+}
