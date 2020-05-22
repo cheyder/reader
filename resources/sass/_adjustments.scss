@@ -1,6 +1,6 @@
-
 .bi {
-  height: 36px;
+  height: 1rem;
+  width: 1rem;
 }
 
 .breadcrumb {
@@ -11,7 +11,7 @@
 
 .breadcrumb-item {
   img {
-    height: 24px;
+    height: 1.1rem;
   }
 }
 
@@ -22,7 +22,11 @@
 .carousel-control-prev,
 .carousel-control-next {
   width: 12%;
-  color: hsl(0, 0, 25);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  border: 1px solid black;
 }
 
 .dropdown-toggle{
@@ -71,6 +75,6 @@
 .navbar {
   .container {
     flex-wrap: nowrap;
-    height: 56px;
+    height: 3.5rem;
   }
 }

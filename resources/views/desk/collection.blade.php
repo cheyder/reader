@@ -6,8 +6,15 @@
 
 @section('content')
 <div class="container">
-  <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false">
+  <div 
+    id="carousel" 
+    class="carousel slide row justify-content-center" 
+    data-ride="carousel" 
+    data-interval="false" 
+    data-touch="true" 
+    data-keyboard="true">
     <div class="carousel-inner col-10">
+
       <div class="carousel-item active">
         <div class="card">
           <div class="card-body">
@@ -131,11 +138,15 @@
       </div>
     </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <svg class="bi bi-chevron-left" viewBox="0 0 16 16" fill="dimgrey" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z" clip-rule="evenodd" />
+      </svg>
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <svg class="bi bi-chevron-right" viewBox="0 0 16 16" fill="dimgrey" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd" />
+      </svg>
       <span class="sr-only">Next</span>
     </a>
   </div>
