@@ -107,8 +107,7 @@ class DeskController extends Controller
   private function validateFolder ()
   {
     return request()->validate([
-      'title' => 'required|string|max:32',
-      'position' => 'required|integer|between:1,6'
+      'title' => 'required|string|max:32'
     ]);
   }
 
@@ -116,7 +115,6 @@ class DeskController extends Controller
   {
     return request()->validate([
       'title' => 'required|string|max:32',
-      'position' => 'required|integer|between:1,6',
       'url' => 'required|url'
     ]);
   }

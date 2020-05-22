@@ -6,14 +6,8 @@
 
 @section('content')
 <div class="container">
-  <div 
-    id="carousel" 
-    class="carousel slide row justify-content-center" 
-    data-ride="carousel" 
-    data-interval="false" 
-    data-touch="true" 
-    data-keyboard="true">
-    <div class="carousel-inner col-10">
+  <div id="carousel" class="carousel slide row justify-content-center" data-ride="carousel" data-interval="false" data-touch="true" data-keyboard="true">
+    <div class="carousel-inner col-11">
 
       <div class="carousel-item active">
         <div class="card">
@@ -41,7 +35,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body overflow-auto">
             <h5 class="card-title">{{ $folder->title }}</h5>
             <div class="list-group">
               @foreach($folder->subfolders as $subfolder)
@@ -77,7 +71,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body overflow-auto">
             <h5 class="card-title">{{ $file->title }}</h5>
             <p class="card-text">{{ $file->abstract }}</p>
           </div>
@@ -92,31 +86,15 @@
         <form method="POST" action="{{ route('desk.store', ['currentFolderId' => $currentFolder]) }}">
           @csrf
           <div class="card">
-            <div class="card-body">
-              <p class="card-text">Get a new text or create a new folder for your collection.</p>
-
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputPosition">Position</label>
-                </div>
-                <select class="custom-select" id="inputPosition" name="position">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="4">Four</option>
-                  <option value="5">Five</option>
-                  <option value="6">Six</option>
-                </select>
-              </div>
+            <div class="card-body overflow-auto">
+              <p class="card-text">Get a new text or create a new folder for your collection:</p>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputType">Type</label>
                 </div>
                 <select class="custom-select" id="inputType" name="type">
-                  <option selected>Choose...</option>
+                  <option selected></option>
                   <option value="file">new Text</option>
                   <option value="folder">new Folder</option>
                 </select>

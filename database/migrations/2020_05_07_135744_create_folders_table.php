@@ -18,7 +18,6 @@ class CreateFoldersTable extends Migration
         $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable();
         $table->string('title');
         $table->foreignId('parent_id')->nullable();
-        $table->enum('position', ['1','2','3','4','5','6'])->nullable();
         $table->timestamps();
       });
     }

@@ -23,7 +23,7 @@
 <body id="app">
     @yield('nav')
 
-    <main class="py-3">
+    <main class="py-2 my-auto">
         @yield('content')
     </main>
 

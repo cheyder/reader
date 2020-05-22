@@ -2,7 +2,9 @@
   height: 1rem;
   width: 1rem;
 }
-
+html, body {
+  height: 100vh;
+}
 .breadcrumb {
   padding: 0.1rem 0.15rem;
   margin-bottom: 0.1rem;
@@ -21,12 +23,20 @@
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 12%;
+  width: 5vw;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   border: 1px solid black;
+}
+
+.col-11 {
+  max-width: 80ch;
+}
+
+.container {
+  width:90vw;
 }
 
 .dropdown-toggle{
