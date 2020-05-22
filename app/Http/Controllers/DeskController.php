@@ -145,8 +145,13 @@ class DeskController extends Controller
     } catch (ParseException $e) {
       echo sprintf('Error processing text: %s', $e->getMessage());
     }
-    $text = $readability->getHTMLAsString();
+    $text = $this->getHTMLAsString($readability);
     return $text;
+  }
+
+  private function getHTMLAsString ($readability)
+  {
+    return sprintf('<h1>%s</h1>%s', $readability->getTitle(), $readability->getContent());
   }
 
   private function getAbstract($text) 
