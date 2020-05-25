@@ -56,12 +56,14 @@ class DeskController extends Controller
 
     if (request(['type'])['type'] == 'folder'){
       $folder = $this->validateFolder();
+      $folder['user_id'] = $userId;
       $newFolder = Folder::create($folder);
-      $newFolder->user_id = $userId;
       $newFolder->parent_id = $currentFolderId;
       $newFolder->save();
+
+      return redirect(route('desk', ['currentFolder' => $newFolder->id]));
     } 
-    elseif (request(['type'])['type'] == 'file'){
+    if (request(['type'])['type'] == 'file'){
       $newFile = $this->validateFile();
       $newFile['user_id'] = $userId;
       $newFile = File::create($newFile);
@@ -83,11 +85,11 @@ class DeskController extends Controller
       $abstract = $this->getAbstract($text);
       $newFile->abstract = $abstract;
 
-      
-
       $newFile->save();
+
+      return redirect(route('text', ['id' => $newFile->id, 'currentFolder' => $currentFolderId]));
     }
-    return redirect(route('desk', ['currentFolder' => $currentFolderId]));
+    
   }
 
   public function delete ($elementType, $elementId)
