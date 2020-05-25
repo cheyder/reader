@@ -10916,12 +10916,9 @@ body {
   border: 1px solid black;
 }
 
-.col-11 {
-  max-width: 80ch;
-}
-
 .container {
   width: 90vw;
+  max-width: 80ch;
 }
 
 .cover-page {
