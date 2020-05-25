@@ -39,6 +39,17 @@ html, body {
   width:90vw;
 }
 
+
+.cover-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h5 {
+    font-size: 1.8rem;
+  }
+}
+
 .dropdown-toggle{
   height: 36px;
 }
