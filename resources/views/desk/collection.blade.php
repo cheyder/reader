@@ -11,8 +11,8 @@
 
       <div class="carousel-item active">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ $folder->title }}</h5>
+          <div class="card-body cover-page">
+            <h5 class="card-title cover">{{ $folder->title }}</h5>
           </div>
         </div>
       </div>
@@ -94,17 +94,17 @@
                   <label class="input-group-text" for="inputType">Type</label>
                 </div>
                 <select class="custom-select" id="inputType" name="type">
-                  <option selected></option>
-                  <option value="file">new Text</option>
-                  <option value="folder">new Folder</option>
+                  <option onclick="toggleInsert()" selected></option>
+                  <option onclick="toggleInsert()" value="file">new Text</option>
+                  <option onclick="toggleInsert()" value="folder">new Folder</option>
                 </select>
               </div>
 
-              <div class="input-group mb-3">
+              <div id="titleInput" class="input-group mb-3 d-none">
                 <input name="title" type="text" class="form-control" placeholder="title">
               </div>
 
-              <div class="input-group mb-3">
+              <div id="urlInput" class="input-group mb-3 d-none">
                 <input name="url" type="text" class="form-control" placeholder="url">
               </div>
             </div>

@@ -31,12 +31,20 @@ html, body {
   border: 1px solid black;
 }
 
-.col-11 {
+.container {
+  width:90vw;
   max-width: 80ch;
 }
 
-.container {
-  width:90vw;
+
+.cover-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h5 {
+    font-size: 1.8rem;
+  }
 }
 
 .dropdown-toggle{

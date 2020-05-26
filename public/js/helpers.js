@@ -28,3 +28,20 @@ function togglePasswordEdit() {
     conf.setAttribute('class', 'd-none');
   }
 }
+
+function toggleInsert() {
+  let select = document.getElementById('inputType');
+  let type = select.value;
+  let inputTitle = document.getElementById('titleInput');
+  let inputUrl = document.getElementById('urlInput');
+  if (type === 'file'){
+    inputTitle.setAttribute('class', 'input-group mb-3');
+    inputUrl.setAttribute('class', 'input-group mb-3');
+  } else if (type === 'folder'){
+    inputTitle.setAttribute('class', 'input-group mb-3');
+    inputUrl.setAttribute('class', 'd-none');
+  } else {
+    inputTitle.setAttribute('class', 'd-none');
+    inputUrl.setAttribute('class', 'd-none');
+  }
+}
