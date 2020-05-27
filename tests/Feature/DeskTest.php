@@ -10,6 +10,7 @@ use App\File;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Exists;
+use Laravel\Passport\Passport;
 
 class DeskTest extends TestCase
 {
@@ -86,6 +87,26 @@ class DeskTest extends TestCase
     ])->first();
     Storage::disk('texts')->assertExists($newFile->id . '_' . $newFile->user_id . '.html');
   }
+
+  public function testViewCollection ()
+  {
+    $user = factory(User::class)->create();
+    $rootFolder = $this->getRootFolder($user);
+    $response = $this->actingAs($user)->get(route('desk', ['currentFolder' => $rootFolder->id]));
+    
+    $folder = Folder::find($rootFolder->id);
+    $subfolders = $folder->subfolders()->get();
+    $subfiles = $folder->files()->get();
+    
+    $response->assertViewHasAll([
+      'folder' => $folder,
+      'folders' => $subfolders,
+      'files' => $subfiles,
+      'currentFolder' => $rootFolder->id,
+      'nestingLevels' => [1]
+    ]);
+  }
+
   public function testDeleteFile()
   {
     $user = factory(User::class)->create();
