@@ -10,8 +10,5 @@ The main function of my application is based on these packages:
 - [andreaskrey/readability.php](https://github.com/andreskrey/readability.php)
 - [kub-at/php-simple-html-dom-parser](https://github.com/Kub-AT/php-simple-html-dom-parser)
 
-### Furthermore:
-- Laravel
-- Bootstrap
-- PHPUnit
-- XDebug
+## Known Issues
+- There is a problem with JavaScript on Android. If you test it there, you won't be able to toogle the input fields and can't add texts or folders.
