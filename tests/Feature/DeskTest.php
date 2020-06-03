@@ -88,22 +88,23 @@ class DeskTest extends TestCase
     Storage::disk('texts')->assertExists($newFile->id . '_' . $newFile->user_id . '.html');
   }
 
-  public function testViewCollection ()
+  public function testDeleteFolder()
   {
     $user = factory(User::class)->create();
-    $rootFolder = $this->getRootFolder($user);
-    $response = $this->actingAs($user)->get(route('desk', ['currentFolder' => $rootFolder->id]));
-    
-    $folder = Folder::find($rootFolder->id);
-    $subfolders = $folder->subfolders()->get();
-    $subfiles = $folder->files()->get();
-    
-    $response->assertViewHasAll([
-      'folder' => $folder,
-      'folders' => $subfolders,
-      'files' => $subfiles,
-      'currentFolder' => $rootFolder->id,
-      'nestingLevels' => [1]
+    $currentFolder = $this->getRootFolder($user);
+    $folderInput = [
+      'type' => 'folder',
+      'title' => 'Testfolder',
+      'user_id' => $user->id,
+      'parent_id' => $currentFolder->id
+    ];
+    $folder = Folder::create($folderInput);
+    $this->post(route('desk.delete', [
+      'elementType' => 'folder',
+      'elementId' => $folder->id
+    ]));
+    $this->assertDeleted('folders', [
+      'id' => $folder->id
     ]);
   }
 
@@ -127,24 +128,23 @@ class DeskTest extends TestCase
       'id' => $file->id
     ]);
   }
-
-  public function testDeleteFolder ()
+  
+  public function testViewCollection()
   {
     $user = factory(User::class)->create();
-    $currentFolder = $this->getRootFolder($user);
-    $folderInput = [
-      'type' => 'folder',
-      'title' => 'Testfolder',
-      'user_id' => $user->id,
-      'parent_id' => $currentFolder->id
-    ];
-    $folder = Folder::create($folderInput);
-    $this->post(route('desk.delete', [
-      'elementType' => 'folder',
-      'elementId' => $folder->id
-    ]));
-    $this->assertDeleted('folders', [
-      'id' => $folder->id
+    $rootFolder = $this->getRootFolder($user);
+    $response = $this->actingAs($user)->get(route('desk', ['currentFolder' => $rootFolder->id]));
+
+    $folder = Folder::find($rootFolder->id);
+    $subfolders = $folder->subfolders()->get();
+    $subfiles = $folder->files()->get();
+
+    $response->assertViewHasAll([
+      'folder' => $folder,
+      'folders' => $subfolders,
+      'files' => $subfiles,
+      'currentFolder' => $rootFolder->id,
+      'nestingLevels' => [1]
     ]);
   }
 

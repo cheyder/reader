@@ -39,13 +39,13 @@
         </div>
 
 
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary my-1" type="submit">Submit</button>
         <a class="btn btn-secondary" href=" {{ route('welcome') }}">Cancel</a>
-        <button class="btn btn-outline-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+        <button class="btn btn-outline-primary my-1" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
           {{ __('Logout') }}
         </button>
-        <button class="btn btn-outline-danger" onclick="event.preventDefault();
+        <button class="btn btn-outline-danger my-1" onclick="event.preventDefault();
                     document.getElementById('delete-form').submit();">Delete</button>
       </form>
 
