@@ -31,43 +31,56 @@
 @endif
 
 @if(Request::is('*desk*'))
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0" >
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
   <div class=" container">
 
-  <a class="navbar-brand" href="{{ url('/') }}">
-    {{ config('app.name', 'Reader') }}
-  </a>
+    <a class="navbar-brand" href="{{ url('/') }}">
+      {{ config('app.name', 'Reader') }}
+    </a>
 
-  <ol class="breadcrumb">
-    @if(isset($nestingLevels['0']))
-    <li class="breadcrumb-item">
-      <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['0']]) }}">
-        <img src="{{ asset('icons/archive-cabinet.png') }}" alt="">
-      </a>
-    </li>
-    @endif
-    @if(isset($nestingLevels['1']))
-    <li class="breadcrumb-item">
-      <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['1'] ]) }}">
-        <img src="{{ asset('icons/archive-box.png') }}" alt="">
-      </a>
-    </li>
-    @endif
-    @if(isset($nestingLevels['2']))
-    <li class="breadcrumb-item">
-      <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['2'] ]) }}">
-        <img src="{{ asset('icons/folder.png') }}" alt="">
-      </a>
-    </li>
-    @endif
-    @if(isset($nestingLevels['3']))
-    <li class="breadcrumb-item">
-      <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['3'] ]) }}">
-        <img src="{{ asset('icons/document.png') }}" alt="">
-      </a>
-    </li>
-    @endif
-  </ol>
+    <ol class="breadcrumb">
+      @if(isset($nestingLevels['0']))
+      <li class="breadcrumb-item">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['0']]) }}">
+          <img src="{{ asset('icons/archive-cabinet.png') }}" alt="">
+        </a>
+      </li>
+      @endif
+      @if(isset($nestingLevels['1']))
+      <li class="breadcrumb-item">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['1'] ]) }}">
+          <img src="{{ asset('icons/archive-box.png') }}" alt="">
+        </a>
+      </li>
+      @endif
+      @if(isset($nestingLevels['2']))
+      <li class="breadcrumb-item">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['2'] ]) }}">
+          <img src="{{ asset('icons/folder.png') }}" alt="">
+        </a>
+      </li>
+      @endif
+      @if(isset($nestingLevels['3']))
+      <li class="breadcrumb-item">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['3'] ]) }}">
+          <img src="{{ asset('icons/document.png') }}" alt="">
+        </a>
+      </li>
+      @endif
+    </ol>
+  </div>
+</nav>
+@endif
+
+@if(Request::is('*impressum'))
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
+  <div class="container">
+    <a href="{{ route('welcome') }}">
+      <svg class="bi bi-arrow-up-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2.5 4a.5.5 0 01.5-.5h5a.5.5 0 010 1H3.5V9a.5.5 0 01-1 0V4z" clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M2.646 3.646a.5.5 0 01.708 0l9 9a.5.5 0 01-.708.708l-9-9a.5.5 0 010-.708z" clip-rule="evenodd" />
+      </svg>
+    </a>
   </div>
 </nav>
 @endif

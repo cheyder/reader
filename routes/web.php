@@ -1,6 +1,8 @@
 <?php
 
+use Collective\Html\HtmlBuilder;
 use Illuminate\Support\Facades\Route;
+use Collective\Html;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,10 @@ Route::get('/', function () {
   return view('welcome');
     
 })->name('welcome');
+
+Route::get('/impressum', function () {
+  return view('impressum');
+})->name('impressum');
 
 Route::resource('users', 'UserController');
 
