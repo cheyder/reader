@@ -99,7 +99,7 @@ class DeskTest extends TestCase
       'parent_id' => $currentFolder->id
     ];
     $folder = Folder::create($folderInput);
-    $this->post(route('desk.delete', [
+    $this->delete(route('desk.delete', [
       'elementType' => 'folder',
       'elementId' => $folder->id
     ]));
@@ -120,7 +120,7 @@ class DeskTest extends TestCase
       'parent_id' => $currentFolder->id
     ];
     $file = File::create($fileInput);
-    $this->post(route('desk.delete', [
+    $this->delete(route('desk.delete', [
       'elementType' => 'file',
       'elementId' => $file->id
     ]));
@@ -138,6 +138,8 @@ class DeskTest extends TestCase
     $folder = Folder::find($rootFolder->id);
     $subfolders = $folder->subfolders()->get();
     $subfiles = $folder->files()->get();
+
+    var_dump($response);
 
     $response->assertViewHasAll([
       'folder' => $folder,
