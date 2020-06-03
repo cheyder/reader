@@ -139,8 +139,6 @@ class DeskTest extends TestCase
     $subfolders = $folder->subfolders()->get();
     $subfiles = $folder->files()->get();
 
-    var_dump($response);
-
     $response->assertViewHasAll([
       'folder' => $folder,
       'folders' => $subfolders,
