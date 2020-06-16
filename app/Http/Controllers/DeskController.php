@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use App\Models\File;
-use App\Models\Folder;
+use App\File;
+use App\Folder;
 
 use andreskrey\Readability\Readability;
 use andreskrey\Readability\Configuration;
