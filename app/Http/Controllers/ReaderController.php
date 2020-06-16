@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DOMDocument;
 use KubAT\PhpSimple\HtmlDomParser;
 use Illuminate\Support\Facades\Storage;
-use App\File;
+use App\Models\File;
 
 
 class ReaderController extends Controller
