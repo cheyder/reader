@@ -1,4 +1,7 @@
-## About Reader
+## About
+Reading requires simplicity and a uniform appearance in order to be able to devote as much attention as possible to the content. Digital texts rarely meet these requirements. This reader downloads articles from the Internet and presents them in a minimalist design to bring the content of the text to the fore.
+
+## Background
 
 This is my graduation project from web devevlopment bootcamp at neuefische Hamburg: A distraction free reader. You can test it [here](https://cheyder.uber.space) (no guarantee for permanent storage of any user data so far). 
 
