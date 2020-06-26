@@ -39,30 +39,30 @@
     </a>
 
     <ol class="breadcrumb">
-      @if(isset($nestingLevels['0']))
+      @if(isset($nestingBranch['0']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['0']]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingBranch['0']]) }}">
           <img src="{{ asset('icons/archive-cabinet.png') }}" alt="">
         </a>
       </li>
       @endif
-      @if(isset($nestingLevels['1']))
+      @if(isset($nestingBranch['1']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['1'] ]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingBranch['1'] ]) }}">
           <img src="{{ asset('icons/archive-box.png') }}" alt="">
         </a>
       </li>
       @endif
-      @if(isset($nestingLevels['2']))
+      @if(isset($nestingBranch['2']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['2'] ]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingBranch['2'] ]) }}">
           <img src="{{ asset('icons/folder.png') }}" alt="">
         </a>
       </li>
       @endif
-      @if(isset($nestingLevels['3']))
+      @if(isset($nestingBranch['3']))
       <li class="breadcrumb-item">
-        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingLevels['3'] ]) }}">
+        <a class="btn p-1" href="{{ route('desk', ['currentFolder' => $nestingBranch['3'] ]) }}">
           <img src="{{ asset('icons/document.png') }}" alt="">
         </a>
       </li>

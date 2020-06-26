@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Folder;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,8 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('view-collection', function ($user, $folder) {
-          return $user->id === $folder->user_id;
+        Gate::define('view-collection', function ($user, $currentFolderId) {
+            $folder = Folder::find($currentFolderId);
+            return $user->id === $folder->user_id;
         });
     }
 }

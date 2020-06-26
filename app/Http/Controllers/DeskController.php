@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\File;
 use App\Folder;
+use App\Services\DeskService;
 
 use andreskrey\Readability\Readability;
 use andreskrey\Readability\Configuration;
@@ -16,33 +16,25 @@ use Illuminate\Support\Facades\Storage;
 
 class DeskController extends Controller
 {
-  private $nestingLevels = [];
 
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
-  public function collection($currentFolder)
+  public function collection($currentFolderId, DeskService $deskService)
   {
-    
-    $folder = Folder::find($currentFolder);
-    if(Gate::allows('view-collection', $folder)) {
-      $subfolders = $folder->subfolders()->get();
-      $subfiles = $folder->files()->get();
-
-      $this->calculateNestingLevels($currentFolder);
-      $nestingLevels = $this->nestingLevels;
+    if(Gate::allows('view-collection', $currentFolderId)) {
+      $collection = $deskService->wrapCollection($currentFolderId);
 
       return view('desk/collection', [
-        'folder' => $folder,
-        'folders' => $subfolders,
-        'files' => $subfiles,
-        'currentFolder' => $currentFolder,
-        'nestingLevels' => $nestingLevels
+        'folder'  => $collection['folder'],
+        'folders' => $collection['subfolders'],
+        'files'   => $collection['subfiles'],
+        'currentFolder' => $currentFolderId,
+        'nestingBranch' => $collection['nestingBranch']
       ]);
     } return back();
-   
   }
 
   public function contents ()
@@ -119,17 +111,6 @@ class DeskController extends Controller
       'title' => 'required|string|max:32',
       'url' => 'required|url'
     ]);
-  }
-
-  private function calculateNestingLevels ($currentFolderId)
-  {
-    $currentFolder = Folder::find($currentFolderId);
-    $parentId = $currentFolder->parent_id;
-    $folderId = $currentFolder->id;
-    if ($parentId > 0) {
-      $this->calculateNestingLevels($parentId);
-    }
-    array_push($this->nestingLevels, $folderId);
   }
 
   private function getParsedHtml ($url)
